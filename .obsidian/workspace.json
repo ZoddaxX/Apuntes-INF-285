@@ -25,11 +25,13 @@
             "id": "72f1c7acd3b1464f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
-                "mode": "source",
-                "source": false
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+                "page": 14,
+                "left": -15,
+                "top": 685,
+                "zoom": 1.0294117647058822
               }
             }
           },
@@ -112,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +131,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +154,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md"
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf"
               }
             }
           }
@@ -177,11 +179,18 @@
   },
   "active": "72f1c7acd3b1464f",
   "lastOpenFiles": [
+    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
+    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+    "Apuntes-INF-285/Utilidades para Obsidian (lo borraré después xD).md",
+    "Apuntes-INF-285/Reglas del Juego.md",
+    "Apuntes-INF-285/Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
+    "Apuntes-INF-285/Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+    "Apuntes-INF-285/Unidad 1",
+    "Apuntes-INF-285/Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+    "Apuntes-INF-285/Material del Curso",
     "Reglas del Juego.md",
     "Utilidades para Obsidian (lo borraré después xD).md",
-    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
     "Apuntes-INF-285",
-    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
     "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
     "Welcome.md",
     "create a link.md",
