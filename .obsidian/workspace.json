@@ -14,9 +14,9 @@
               "type": "pdf",
               "state": {
                 "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-                "page": 14,
+                "page": 46,
                 "left": -11,
-                "top": 447,
+                "top": 298,
                 "zoom": 1.3970588235294117
               }
             }
@@ -25,13 +25,11 @@
             "id": "72f1c7acd3b1464f",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-                "page": 14,
-                "left": -15,
-                "top": 685,
-                "zoom": 1.0294117647058822
+                "file": "Reglas del Juego.md",
+                "mode": "source",
+                "source": false
               }
             }
           },
@@ -114,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+                "file": "Reglas del Juego.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+                "file": "Reglas del Juego.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,15 +152,25 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf"
+                "file": "Reglas del Juego.md"
               }
             }
+          },
+          {
+            "id": "668c9246e708b7cf",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -174,12 +182,17 @@
       "command-palette:Open command palette": false,
       "pdf-plus:PDF++: Toggle auto-copy": false,
       "pdf-plus:PDF++: Toggle auto-focus": false,
-      "pdf-plus:PDF++: Toggle auto-paste": false
+      "pdf-plus:PDF++: Toggle auto-paste": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
   "active": "72f1c7acd3b1464f",
   "lastOpenFiles": [
-    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
+    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
+    "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+    "Utilidades para Obsidian (lo borraré después xD).md",
+    "Material del Curso/s02_estandar.pdf",
+    "Reglas del Juego.md",
     "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
     "Apuntes-INF-285/Utilidades para Obsidian (lo borraré después xD).md",
     "Apuntes-INF-285/Reglas del Juego.md",
@@ -188,10 +201,7 @@
     "Apuntes-INF-285/Unidad 1",
     "Apuntes-INF-285/Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
     "Apuntes-INF-285/Material del Curso",
-    "Reglas del Juego.md",
-    "Utilidades para Obsidian (lo borraré después xD).md",
     "Apuntes-INF-285",
-    "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
     "Welcome.md",
     "create a link.md",
     "Pasted image 20240714220716.png",

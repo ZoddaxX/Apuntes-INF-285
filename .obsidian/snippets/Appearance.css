@@ -1,0 +1,11 @@
+.workspace-leaf-content[data-mode="preview"]
+.markdown-preview-view
+.metadata-container{
+    display: none;
+}
+
+.workspace-leaf-content[data-mode="preview"]
+.markdown-preview-view.show_properties
+.metadata-container{
+    display: block;
+}
