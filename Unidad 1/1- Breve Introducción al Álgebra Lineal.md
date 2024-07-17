@@ -45,7 +45,7 @@ a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{bmatrix}
 =
 \begin{array}{c|c|c|c}
-\bm{[}\bm{a}_{1} & \bm{a}_2 & \cdots & \bm{a}_n \bm{]}, 
+\bm{[}\ \bm{a}_{1} & \bm{a}_2 & \cdots & \bm{a}_n\ \bm{]}, 
 \end{array}
 $$
 Donde $\bm{a}_k = \begin{bmatrix} \bm{a}_{1k} \\ \vdots \\ \bm{a}_{mk} \end{bmatrix}$. De esta forma es posible interpretar el matriz-vector como:
@@ -79,7 +79,7 @@ a_{21}*b_{11} + a_{22}*b_{21} + \cdots + a_{2n}b_{n1} & a_{21}*b_{12} + a_{22}*b
 a_{m1}*b_{11} + a_{m2}*b_{21} + \cdots + a_{mn}b_{n1} & a_{m1}*b_{12} + a_{m2}*b_{22} + \cdots + a_{mn}b_{n2} & \cdots & a_{m1}*b_{1l} + a_{m2}*b_{2l} + \cdots + a_{mn}b_{nl} 
 \end{bmatrix}$$
 
-Y antes de que me odien por poner la notación más bruta que hayan podido ver hasta ahora en estos apuntes, voy a expresarlo en formato de vectores columna como en el caso anterior:
+Y antes de que me odien por poner la notación más bruta que hayan podido ver hasta ahora en estos apuntes, aquí les paso el mismo resultado en formato de vectores columna como en el caso anterior:
 $$AB = 
 \begin{array}{c|c|c|c}
 \bm{[}\bm{a}_{1} & \bm{a}_2 & \cdots & \bm{a}_n \bm{]} 
@@ -150,7 +150,7 @@ $$H=
 		1  
 	\end{bmatrix}
 \right)$$
-Donde podemos apreciar corresponde a la definición de $\text{Span}$.
+Donde podemos apreciar que esta expresión corresponde a la definición de $\text{Span}$.
 
 ### Cambio de Base
 
@@ -240,7 +240,7 @@ v_1 \\
 v_2
 \end{bmatrix}$$
 donde podemos establecer una combinación lineal para el cambio de base:
-$$a\bm{u} + b\bm{v} = 
+$$\alpha\bm{u} + \beta\bm{v} = 
 \alpha
 \begin{bmatrix}
 u_1 \\
