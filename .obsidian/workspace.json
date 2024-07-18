@@ -13,28 +13,28 @@
             "state": {
               "type": "pdf",
               "state": {
-                "file": "Material del Curso/s04_raices1D_1.pdf",
-                "page": 16,
-                "left": -6,
-                "top": 218,
-                "zoom": 2.356443011286122
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+                "page": 63,
+                "left": -11,
+                "top": 328,
+                "zoom": 1.3970588235294117
               }
             }
           },
           {
-            "id": "fb03a4dd6b643909",
+            "id": "65f4c0843ecf3db7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Unidad 1/3- Raíces en 1D (Parte 1).md",
+                "file": "Unidad 1/4- Raíces en 1D (Parte 2).md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "65f4c0843ecf3db7",
+            "id": "2bd5ec7169e598f3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -112,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unidad 1/3- Raíces en 1D (Parte 1).md",
+                "file": "Unidad 1/4- Raíces en 1D (Parte 2).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unidad 1/3- Raíces en 1D (Parte 1).md",
+                "file": "Unidad 1/4- Raíces en 1D (Parte 2).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -160,7 +160,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unidad 1/3- Raíces en 1D (Parte 1).md"
+                "file": "Unidad 1/4- Raíces en 1D (Parte 2).md"
               }
             }
           }
@@ -183,36 +183,41 @@
       "pdf-plus:PDF++: Toggle auto-copy": false,
       "pdf-plus:PDF++: Toggle auto-focus": false,
       "pdf-plus:PDF++: Toggle auto-paste": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "vscode-editor:Create Code File": false
     }
   },
-  "active": "fb03a4dd6b643909",
+  "active": "65f4c0843ecf3db7",
   "lastOpenFiles": [
-    "Material del Curso/s04_raices1D_1.pdf",
     "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-    "Unidad 1/3- Raíces en 1D (Parte 1).md",
-    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
-    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
-    "siguientes incisos.md",
-    "Utilidades para Obsidian (lo borraré después xD).md",
+    "Unidad 1/4- Raíces en 1D (Parte 2).md",
+    "Material del Curso/s05_raices1D_2.pdf",
     "Material del Curso/s02_estandar.pdf",
+    "Código Útil/Diagrama de Cobweb.py",
+    "Diagrama de Cobweb.md",
+    "Utilidades para Obsidian (lo borraré después xD).md",
+    "Imágenes/Cobweb_2.png",
+    "Código Útil/Diagrama de Cobweb 2.py",
+    "Código Útil/Diagrama de Cobweb 1.py",
+    "Imágenes/CobWeb_1.png",
+    "Imágenes",
+    "Código Útil",
+    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
+    "Unidad 1/3- Raíces en 1D (Parte 1).md",
+    "Material del Curso/s04_raices1D_1.pdf",
     "Reglas del Juego.md",
+    "siguientes incisos.md",
     "Apuntes-INF-285/Utilidades para Obsidian (lo borraré después xD).md",
     "Apuntes-INF-285/Reglas del Juego.md",
     "Apuntes-INF-285/Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
     "Apuntes-INF-285/Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
     "Apuntes-INF-285/Unidad 1",
-    "Apuntes-INF-285/Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-    "Apuntes-INF-285/Material del Curso",
-    "Apuntes-INF-285",
     "Welcome.md",
     "create a link.md",
     "Pasted image 20240714220716.png",
     "[GitHub.md",
-    "Material del Curso",
     "[Numerical.md",
-    "().md",
-    "Unidad 1",
-    "Introducción"
+    "().md"
   ]
 }

@@ -36,3 +36,7 @@ Bloque de pseudocódigo:
     \end{algorithm}
 ```
 
+Límite:
+$$\lim\limits_{x \to \infty} f(x)$$
+Raíz n-ésima de un número:
+$$f(x) = \sqrt[n]{x}$$
