@@ -86,6 +86,7 @@ Es evidente que en este caso hay una clara convergencia hacia 1. Para las primer
 
 ![[CobWeb_2.png]]
 
+Si se fijan bien en la imagen, es posible interpretar de aquí que la búsqueda de raíces no es mas que buscar la intersección entre una recta y una función que no necesariamente va a ser lineal! (al menos si lo vemos desde el punto de vista de la iteración de punto fijo, recordemos que en la práctica para este algoritmo estamos buscando un punto fijo para nuestra función $g(x)$) ^446a3c
 ### Convergencia Lineal de Iteración de Punto Fijo
 Para poder analizar la convergencia de una iteración de punto fijo, es necesario introducir el **Teorema del valor medio**: *Sea $f$ una función continua en el intervalo \[$a$, $b$] y diferenciable en el intervalo ]$a$, $b$\[. Entonces existe un número $c$ entre $a$ y $b$ tal que:* 
 $$f'(c) = \frac{f(b) - f(a)}{b-a}$$ ^63be27

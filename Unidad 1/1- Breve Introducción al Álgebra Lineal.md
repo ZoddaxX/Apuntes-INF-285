@@ -256,7 +256,7 @@ v_2
 4 \\
 3
 \end{bmatrix}$$
-El cual se puede representar como un sistema de ecuaciones:
+El cual se puede representar como un sistema de ecuaciones: ^af436c
 $$ \underbrace{\begin{bmatrix} 
 u_1 & v_1 \\ 
 u_2 & v_2 
