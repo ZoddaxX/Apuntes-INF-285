@@ -107,26 +107,26 @@ $$x = \frac{c_1-b_1y}{a_1} = \frac{c_1b_2 - c_2b_1}{a_1b_2 - a_2b_1}$$
 Que corresponden a las mismas soluciones que obtuvimos para el mismo ejemplo con el [[#Por Substitución|método de substitución]].
 
 En resumidas cuentas, el procedimiento para ejecutar el algoritmo es el siguiente:
-- Construir la matriz extendida a partir del sistema de ecuaciones lineales $A\bm{\text{x}} = \bm{\text{c}}$.
+- Construir la matriz extendida a partir del sistema de ecuaciones lineales $A\bm{\text{x}} = \bm{\text{b}}$.
 - Aplicar operaciones fila para transformar el sistema de ecuaciones original, de modo que obtengamos una matriz asociada de forma [[|triangular superior]] y un lado derecho de la forma $U\bm{\text{x}} = \bm{\hat{c}}$.
 - Resolver el sistema de ecuaciones resultantes con [[#Backward Substitution|backward sustitution]].
 
 De forma general, nuestra matriz extendida va a tener la siguiente forma:
 $$ \left[ \begin{array}{cccc|c} 
-a_{11} & a_{12} & \cdots & a_{1n} & c_1 \\ 
-a_{21} & a_{22} &        & a_{2n} & c_2 \\
+a_{11} & a_{12} & \cdots & a_{1n} & b_1 \\ 
+a_{21} & a_{22} &        & a_{2n} & b_2 \\
 \vdots &        & \ddots & \vdots & \vdots \\
-a_{n1} & a_{n2} & \cdots & a_{nn} & c_n
+a_{n1} & a_{n2} & \cdots & a_{nn} & b_n
 \end{array} \right] 
 = 
-\left[ \begin{array}{c|c} A & \bm{\text{c}} \end{array} \right]$$
+\left[ \begin{array}{c|c} A & \bm{\text{b}} \end{array} \right]$$
 Con lo cual se traduce en el siguiente algoritmo para convertir esta matriz extendida en su forma triangular superior:
 
 ```python
 for j in range(n):
 	for i in range(j+1, n):
-		mult = C[i][j]/C[j][j]			
-		C[i][j:n+1] = [C[i][k] - mult * C[j][k] for k in range(j, n + 1)]
+		mult = B[i][j]/B[j][j]			
+		B[i][j:n+1] = [B[i][k] - mult * B[j][k] for k in range(j, n + 1)]
 ```
 
 Donde la matriz $C$ es donde se almacena la matriz extendida. 
@@ -143,9 +143,12 @@ Para saber la complejidad del algoritmo, basta con estudiar el código anterior 
 
 Considerando el anidamiento de las operaciones, obtenemos la siguiente expresión:
 $$\sum_{j=1}^{n-1}\ \sum_{i=j+1}^n(1+2(n+1-j)) = \frac{2}{3}n^3 + \frac{1}{2}n^2 - \frac{7}{6}n$$
-Con lo que asintóticamente queda una cota de $\theta(n^3)$ como tiempo de ejecución del algoritmo, y una cantidad aproximada de $\frac{2}{3}n^3$ operaciones elementales.
+Con lo que asintóticamente queda una cota de $\theta(n^3)$ como tiempo de ejecución del algoritmo, y realiza una cantidad aproximada de $\frac{2}{3}n^3$ operaciones elementales.
 
 ### Backward Substitution
+
+^4d925e
+
 Este término hace referencia a un algoritmo diseñado específicamente para resolver sistemas de ecuaciones lineales que sean de la forma $U\bm{\text{x}} = \bm{\text{b}}$, donde $U$ es una matriz triangular superior y se usa $\tilde{b}$ para denotar al vector del lado derecho:
 $$\begin{bmatrix}
 u_{11} & u_{12} & \cdots & \cdots      & u_{1n}    \\
@@ -195,3 +198,254 @@ for i in range(n, 1, -1):
 	x[i] = b[i]/u[i][i]
 ```
 
+Considerando las operaciones y los ciclos tenemos una cantidad de operaciones elementales dada por:
+$$\sum_{i=1}^{n}\left[2 \left(\sum_{j = i+1}^{n} 1 \right) + 1 \right] = n^2$$
+Esto implica que este algoritmo de solución posee una complejidad $\theta (n^2)$ además de realizar $n^2$ operaciones elementales.
+
+## Factorización $\text{LU}$ de $A$ 
+ 
+ Ya hemos visto que la eliminación Gaussiana logra obtener las soluciones de un sistema de ecuaciones lineales de la forma $Ax=\bm{\text{b}}$ transformando la matriz izquierda a su forma [[|triangular superior]], quedando un sistema de la forma $Ux = \bm{\tilde{b}}$. Ahora, supongamos que nosotros queremos resolver nuevamente el mismo sistema de ecuaciones lineales, solamente cambiando los valores a la derecha de la matriz. 
+ Por ejemplo, resolvemos inicialmente:
+ $$\begin{align}
+ a_{11}x + a_{12}y =&\ b_1\\
+ a_{21}x + a_{22}y =&\ b_2
+ \end{align}$$
+ Con lo que naturalmente tenemos un sistema de ecuaciones de la forma $Ax=\bm{\text{b}}$, la cual al eliminar de forma Gaussiana obtenemos un sistema de la forma $Ux = \bm{\tilde{b}}$. Supongamos ahora que necesitamos resolver el mismo sistema de ecuaciones, pero con distintos valores a la derecha de nuestras ecuaciones:
+ $$\begin{align}
+ a_{11}x + a_{12}y =&\ d_1\\
+ a_{21}x + a_{22}y =&\ d_2
+ \end{align}$$
+ Ahora tendremos un sistema de ecuaciones lineales de la forma $Ax=\bm{\text{d}}$, donde tendremos que aplicar nuevamente la técnica de eliminación Gaussiana para transformar nuestro sistema a uno de la forma $Ux = \bm{\tilde{d}}$. 
+
+Hacer estas 2 tareas con lo que hemos aprendido hasta ahora involucra tener que realizar eliminación Gaussiana un total de 2 veces, lo que involucra la realización de 2 veces $\frac{2}{3}n^3$ operaciones elementales de forma aproximada para poder lograrlo según lo que se repasó en el apartado de [[#Complejidad Computacional de la Eliminación Gaussiana Simple]]. Como podrán haber notado, la expresión $U$ aparece repetida en ambas ecuaciones luego de haber transformado la matriz $A$ a su forma [[|triangular superior]], por lo que como pueden haber intuido en este punto existe una forma de optimizar el cálculo de nuevos sistemas de ecuaciones donde solamente cambiemos su lado derecho.
+
+La factorización $\text{LU}$ de $A$ es bastante simple, lo único que hay que hacer es reescribir la expresión $A$ en función del producto entre una matriz [[|triangular inferior]] $L$ y una matriz [[|triangular superior]] $U$, o sea, expresar $A = LU$. Gracias a la técnica de eliminación Gaussiana somo capaces de obtener la matriz $U$, por lo que ahora nos queda descubrir como es que podemos obtener la matriz $L$, y para ello vamos a utilizar las siguientes afirmaciones: ^8d7f72
+
+- Sea $L_{ij}(-c)$ una matriz triangular inferior la cual tiene coeficientes no-cero en su diagonal y en la posición ($i$, $j$). En particular la diagonal está compuesta de solamente 1´s y en la posición ($i$, $j$) está el valor $-c$. Entonces $L_{ij}(-c)A$ representa la operación fila "restar a la fila $i$  el valor de la fila $j$ multiplicada por $c$". Esto quiere decir que es posible representar operaciones fila mediante una [[|transformación lineal]]. Por ejemplo:
+$$A = 
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+, L_{21}(-c)*A =
+\begin{bmatrix}
+1 & 0 \\
+-c & 1
+\end{bmatrix}
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} - ca_{11} & a_{22} - ca_{12}
+\end{bmatrix}$$
+ ^c1cb0e
+- $L_{ij}^{-1}(-c) = L_{ij}c$, es decir, la matriz inversa de $L_{ij}(-c)$ es igual a $L_{ij}(c)$. Esto significa que $L_{ij}(-c)L_{ij}(c) = I$, donde $I$ corresponde a la [[|matriz identidad]]. Por ejemplo:
+$$\begin{bmatrix}
+1 & 0 \\
+-c & 1
+\end{bmatrix}
+^{-1}
+\begin{bmatrix}
+1 & 0 \\
+-c & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+c & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+-c & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+c - c & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}$$
+ ^d4e7ab
+- La siguiente ecuación matricial es cierta:
+$$\begin{bmatrix}
+1   & 0 & 0 \\
+c_1 & 1 & 0 \\
+0   & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1   & 0 & 0 \\
+0   & 1 & 0 \\
+c_2 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0   & 0 \\
+0 & 1   & 0 \\
+0 & c_3 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1   & 0   & 0 \\
+c_1 & 1   & 0 \\
+c_2 & c_3 & 1
+\end{bmatrix}$$
+^31b521
+
+Ahora que poseemos las aseveraciones necesarias, podemos empezar a plantearnos obtener la matriz $L$. Tomemos como ejemplo la siguiente matriz $A$:
+$$A = \begin{bmatrix}
+1  & 2 & -1 \\
+2  & 1 & -2 \\
+-3 & 1 & 1
+\end{bmatrix}$$
+Dado que $A$ es una matriz $3 \times 3$ sabemos que solo necesitamos realizar 3 operaciones fila para transformarla en la matriz triangular superior $U$. Considerando la [[5- Sistemas de Ecuaciones Lineales#^c1cb0e|primera aseveración]] vista, podemos escribir las operaciones fila necesarias para obtener el valor de U:
+$$\underbrace{\begin{bmatrix}
+1  & 0           & 0 \\
+0  & 1           & 0 \\
+0  & \frac{7}{3} & 1
+\end{bmatrix}}_{L_{3,2}(7/3)}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+3 & 0 & 1
+\end{bmatrix}}_{L_{3,1}(3)}
+\underbrace{\begin{bmatrix}
+1  & 0 & 0 \\
+-2 & 1 & 0 \\
+0  & 0 & 1
+\end{bmatrix}}_{L_{2,1}(-2)}
+\underbrace{\begin{bmatrix}
+1  & 2 & -1 \\
+2  & 1 & -2 \\
+-3 & 1 & 1
+\end{bmatrix}}_{A}
+= 
+\underbrace{\begin{bmatrix}
+1 & 2  & -1 \\
+0 & -3 & 0  \\
+0 & 0  & -2
+\end{bmatrix}}_{U}$$
+Cabe recordar en este punto que NO estamos usando la matriz extendida de $A$, por lo que no estamos considerando esa parte derecha del sistema de ecuaciones lineales. La expresión anterior la podemos representar de una forma más simplista:
+$$L_{3,2}(7/3)L_{3,1}(3)L_{3,1}(-2)A = U$$
+Despejando $A$ y utilizando la [[5- Sistemas de Ecuaciones Lineales#^d4e7ab|segunda aseveración]] obtenemos:
+$$\begin{align}
+A =&\ L_{3,1}(-2)^{-1}L_{3,1}(3)^{-1}L_{3,2}(7/3)^{-1}U \\
+=&\ L_{3,1}(2)L_{3,1}(-3)L_{3,2}(-7/3)U
+\end{align}$$
+Y para terminar podemos usar la [[5- Sistemas de Ecuaciones Lineales#^31b521|tercera aseveración]] para finalmente llegar a la expresión de $L$:
+$$\begin{align} 
+A =&\
+\underbrace{\begin{bmatrix}
+1  & 0 & 0 \\
+2  & 1 & 0 \\
+0  & 0 & 1
+\end{bmatrix}}_{L_{2,1}(2)}
+\underbrace{\begin{bmatrix}
+1  & 0 & 0 \\
+0  & 1 & 0 \\
+-3 & 0 & 1
+\end{bmatrix}}_{L_{3,1}(-3)}
+\underbrace{\begin{bmatrix}
+1  & 0           & 0 \\
+0  & 1           & 0 \\
+0  & \frac{7}{3} & 1
+\end{bmatrix}}_{L_{3,2}(-7/3)}
+\underbrace{\begin{bmatrix}
+1 & 2  & -1 \\
+0 & -3 & 0  \\
+0 & 0  & -2
+\end{bmatrix}}_{U}
+\\
+=&\ \underbrace{\begin{bmatrix}
+1   & 0           & 0 \\
+2   & 1           & 0 \\
+-3  & \frac{7}{3} & 1
+\end{bmatrix}}_{L}
+\underbrace{\begin{bmatrix}
+1 & 2  & -1 \\
+0 & -3 & 0  \\
+0 & 0  & -2
+\end{bmatrix}}_{U}
+\end{align}$$
+Con esto podemos interpretar a $L$ como un conjunto de instrucciones operaciones fila expresadas en la forma de transformaciones lineales, los cuales consisten en las operaciones necesarias para realizar la eliminación Gaussiana. 
+
+### Utilización de la Factorización $\bm{\text{LU}}$ 
+Tal como nosotros vimos con la [[5- Sistemas de Ecuaciones Lineales#Eliminación Gaussiana Simple|eliminación Gaussiana simple]], es bastante factible aprovechar la estructura [[|triangular superior]] de la matriz $U$ con tal de resolver eficientemente el sistema de ecuaciones. En este caso tenemos además que la matriz $L$ posee una estructura [[|triangular inferior]], cual por supuesto podemos aprovechar para calcular rápidamente el valor de esta matriz mediante *Forward Substitution* (que en esencia es lo mismo que [[5- Sistemas de Ecuaciones Lineales#Backward Substitution|Backward Substitution]], solo que esta vez el sistema de ecuaciones nuevo se resuelve de arriba hacia abajo). Para ejemplificar esto tomemos el siguiente sistema de ecuaciones:
+$$Ax = \bm{\text{b}}$$
+Supongamos que logramos realizar la factorización $\bm{\text{LU}}$ de $A$:
+$$\begin{align}
+Ax              =&\ \bm{\text{b}} \\
+\bm{\text{LU}}x =&\ \bm{\text{b}}
+\end{align}$$
+Suponiendo además que ya logramos obtener el valor de $\bm{\text{U}}$ mediante el uso de la eliminación Gaussiana, hagamos ahora el cambio de variable $\bm{\text{c}} = Ux$:
+$$\begin{align}
+\bm{\text{L}}\underbrace{\bm{\text{U}}x}_{\bm{\text{c}}} =&\ \bm{\text{b}} \\
+\bm{\text{Lc}}                                           =&\ \bm{\text{b}}
+\end{align}$$
+Y notemos ahora que obtuvimos un nuevo sistema de ecuaciones lineales en función de $\bm{\text{L}}$! Nótese eso si que esto ha sido posible realizarlo debido a que el producto punto entre $\bm{\text{U}}$ y $x$ nos dan nuevas incógnitas desconocidas. Escribamos el sistema de ecuaciones nuevo en su forma vectorial:
+$$\begin{bmatrix}
+1       &      0  & \cdots & \cdots      & 0      \\
+l_{2,1} & 1       & \ddots & \ddots      & 0      \\
+l_{3,1} & l_{3,2} & 1      & \ddots      & 0      \\
+\vdots  &         & \ddots & \ddots      & \vdots \\
+l_{n,1} & \cdots  & \cdots & l_{n,n-1}           & 1
+\end{bmatrix}
+\begin{bmatrix}
+c_1 \\
+c_2 \\
+c_3 \\
+\vdots \\
+c_{n-1} \\
+c_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3 \\
+\vdots \\
+b_{n-1} \\
+b_n
+\end{bmatrix}$$
+Y en efecto, es evidente decir que usando *Forward Substitution* es posible despejar todos los valores asociados a la matriz $\bm{\text{c}}$. Es más, gracias a haber despejado $\bm{\text{c}}$ ahora nosotros podemos despejar el valor de $x$:
+$$\bm{\text{U}}x = \bm{\text{c}}$$
+$$\begin{bmatrix}
+u_{11} & u_{12} & \cdots & \cdots      & u_{1n}    \\
+0      & u_{22} & \cdots & \cdots      & u_{2n}    \\
+\vdots & 0      & \ddots &             & \vdots    \\
+\vdots &        & \ddots & u_{n-1,n-1} & u_{n-1,n} \\
+0      &        & \cdots & 0           & u_{nn}
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_{n-1} \\
+x_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+c_1 \\
+c_2 \\
+\vdots \\
+c_{n-1} \\
+c_n
+\end{bmatrix}$$
+Como sabemos los valores de la matriz $\bm{\text{U}}$ y los valores de la matriz $\bm{\text{c}}$ entonces basta con usar [[5- Sistemas de Ecuaciones Lineales#Backward Substitution|Backward Substitution]] para finalmente obtener los valores de $x$.
+
+El algoritmo completo para describir la resolución del sistema de ecuaciones lineales original $Ax = \bm{\text{b}}$ entonces es el siguiente:
+
+```python
+L,U = computeLU(A)
+c = ForwardSubstitution(L,b)
+x = BackwardSubstitution(U,c)
+return x
+```
+
+Notemos que el la cantidad aproximada de operaciones elementales para resolver el sistema de ecuaciones es de $\frac{2}{3}n^3 + 2n^2$ si es que no conocemos $\bm{\text{U}}$, donde el término $\frac{2}{3}n^3$ equivale a la cantidad de operaciones elementales para realizar la eliminación Gaussiana simple para poder obtenerla, mientras que el otro término $2n^2$ equivale a las operaciones elementales para la [[5- Sistemas de Ecuaciones Lineales#Backward Substitution|Backward Substitution]] y la *Forward Substitution* (naturalmente necesitando esta última la misma cantidad de operaciones elementales que la primera). Aunque bien recordemos que resolver un sistema de ecuaciones mediante [[5- Sistemas de Ecuaciones Lineales#Complejidad Computacional de la Eliminación Gaussiana Simple|eliminación Gaussiana simple]] solo tome $\frac{2}{3}n^3 + n^2$ operaciones elementales tomando en cuenta además las operaciones de *Backward Substitution*, el método de factorización $\bm{\text{LU}}$ obtiene la ventaja una vez nosotros sepamos el valor de $\bm{\text{U}}$, necesitando únicamente $2n^2$ operaciones elementales en resolver el mismo sistema de ecuaciones lineal $Ax = \bm{\text{b}}_i$ para valores distintos de $\bm{\text{b}}_i$.
+
+## Factorización $\bm{\text{PU}} = \bm{\text{LA}}$

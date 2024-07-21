@@ -14,7 +14,7 @@ La nota final se calculará usando la siguiente fórmula:
 $$NF = (0.75NC + 0.25NT)*\gamma,$$
 Donde NC corresponde a:
 $$\sqrt[3]{C_3(\frac{C_1 + C_2}{2})^2},$$y NT se calcula con:
-$$NT = NPT * H(NPT-55),\ H(x) = \begin{cases} 0 & \text{si } x < 0 \\ 1 & \text{si } x \geq 0 \end{cases}$$Donde además NTP (Nota de Promedio de Tareas) se calcula como:
+$$NT = NPT * H(NPT-55),\ H(x) = \begin{cases} 0 & \text{si } x < 0 \\ 1 & \text{si } x \geq 0 \end{cases}$$Donde además NPT (Nota de Promedio de Tareas) se calcula como:
 $$\frac{1}{n-1}(\sum_{i=1} ^{n} {T_i})\ - min(T_1,T_3)$$Donde n es el número de tarea que se publicaron, $T_i$ corresponde a la nota de la tarea i, $C_i$ corresponde a la nota de certamen i, y además $\gamma$ $\in$ \[1.00, 1.10] es el factor obtenido por el desarrollo de tareas voluntarias, por los cuales de forma bonus PODRIA considerarse la participación en clases.
 
 Finalmente, el alumno termina aprobando si es que su $NF$ es mayor o igual a 55.
