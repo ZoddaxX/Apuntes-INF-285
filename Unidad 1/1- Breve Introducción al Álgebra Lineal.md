@@ -272,3 +272,79 @@ u_2 & v_2
 Para este caso, el problema se convirtió en un sistema de ecuaciones lineales, el cual se resuelve de la forma:
 $$A\bm{x} = \bm{b} \implies \bm{x}=A^{-1}\bm{b}$$
 Donde $A^{-1}$ corresponde a la matriz inversa de $A$.
+
+## Propiedades de las Matrices y Operadores Importantes
+### Column Space, Row Space y Rank
+- <u>Column Space</u>: Es el espacio generado por los vectores columna de una matriz, lo que coloquialmente hablando corresponde a la cantidad de columnas que posee una matriz, o matemáticamente hablando equivale a $\text{Range}(A)$.
+- <u>Column Rank</u>: Corresponde a la dimensión del Column Space, es decir, equivale a la cantidad de columnas de una matriz que sean linealmente independientes entre sí.
+- <u>Row Space</u>: Es el espacio generado por los vectores fila de una matriz, lo que coloquialmente hablando corresponde a la cantidad de filas que posee una matriz, o matemáticamente hablando equivale a $\text{Range}(A^T)$.
+- <u>Row Rank</u>: Corresponde a la dimensión del Row Space, es decir, equivale a la cantidad de filas de una matriz que sean linealmente independientes entre sí.
+
+Es bueno destacar que se cumplen para todas las matrices que sus Row Rank son el mismo que sus Column Rank, por lo que a partir de aquí me voy a referir a uno o al otro como *Rank*.
+
+### Full Rank
+A una matriz $A \in \mathbb{R}^{m \times n}$ se le denomina *Full Rank* si es que posee la mayor cantidad de Rank posible, el cual corresponde al mínimo entre sus dimensiones $m$ y $n$.
+Por ejemplo, consideremos la siguiente matriz rectangular de dimensiones $2 \times 3$:
+$$A = 
+\begin{bmatrix}
+1 & 2 & 3 \\
+2 & 4 & 6
+\end{bmatrix}$$
+La mayor cantidad de Rank posible de obtener para esta matriz es de $\min(2,3) = 2$, sin embargo, notemos que la primera fila no es linealmente independiente de la segunda fila, debido a que si multiplicamos todos los valores de la primera fila por 2 obtendremos los mismos valores de la segunda fila, esto significa que el Rank de la matriz $A$ es de 1, y como $1 \neq 2$ entonces efectivamente esta matriz no es *Full Rank*.
+
+### Inversa
+Una matriz posee inversa si y solo si es cuadrada (o sea, es de dimensiones $n \times n$) y además es *Full Rank*. Esto significa que existe una matriz $Z$ que cumple la siguiente ecuación:
+$$AZ = ZA = \underbrace{I}_{\text{Matriz Identidad}} =
+\begin{bmatrix}
+1      &      0 & \cdots & 0      & 0      \\
+0      &      1 & \ddots & \vdots & \vdots \\
+0      &      0 & \ddots & 0      & 0      \\
+\vdots & \vdots & \ddots & 1      & 0      \\
+0      &      0 & \cdots & 0      & 1      \\
+\end{bmatrix}
+$$
+Donde $Z$ correspondería a la inversa de $A$.
+
+### Determinante
+El determinante corresponde a un escalar obtenible de una matriz $A \in \mathbb{R}^{n \times n}$ (es decir, tiene que ser una matriz cuadrada) la cual se puede calcular de la siguiente forma:
+$$\text{det}(A) = \sum_{j\ =\ 1}^{n} (-1)^{i+j}A_{i,j}\text{det}(A_{|i|,|j|})$$
+La cual cumple con las siguientes propiedades:
+- $\text{det}(A^{-1}) = \frac{1}{\text{det}(A)}$.
+- $\text{det}(AB) = \text{det}(A)\text{det}(B)$ donde $B \in \mathbb{R}^{n \times n}$.
+- $\text{det}(\alpha A) = \alpha^n \text{det}(A)$, donde $\alpha$ corresponde a un escalar.
+- $\text{det}(A^T) = \text{det}(A)$, donde $^T$ es el operador transpuesta.
+- $\text{det}(A) = \prod_{i = 1}^{n}\lambda_i$, donde $\lambda_i$ para $i \in \{1,2,\cdots,n\}$ son los valores propios de $A$.
+
+## Matrices Particulares
+### Matriz Identidad
+Esta matriz $I \in \mathbb{R}^{n \times n}$ es una matriz en la que todos los coeficientes de ella son 0, menos los elementos de su diagonal principal, los cuales son solamente 1´s.
+$$I = 
+\begin{bmatrix}
+1      &      0 & \cdots & 0      & 0      \\
+0      &      1 & \ddots & \vdots & \vdots \\
+0      &      0 & \ddots & 0      & 0      \\
+\vdots & \vdots & \ddots & 1      & 0      \\
+0      &      0 & \cdots & 0      & 1      \\
+\end{bmatrix}$$
+
+### Matrices Triangulares
+Una matriz triangular es un tipo de matriz tal que sus coeficientes son todos ceros debajo de su diagonal principal si es que se trata de una matriz triangular superior, y sus coeficientes son todos ceros arriba de su diagonal principal si es que se trata de una matriz triangular inferior.
+
+Una matriz triangular superior se vería así:
+$$\begin{bmatrix}
+u_{11} & u_{12} & \cdots & \cdots      & u_{1n}    \\
+0      & u_{22} & \cdots & \cdots      & u_{2n}    \\
+\vdots & 0      & \ddots &             & \vdots    \\
+\vdots & \vdots & \ddots & u_{n-1,n-1} & u_{n-1,n} \\
+0      & \cdots & \cdots & 0           & u_{nn}
+\end{bmatrix}$$
+Mientras que una triangular inferior se vería así:
+$$\begin{bmatrix}
+u_{11} & 0      & \cdots & \cdots      & 0         \\
+u_{21} & u_{22} & \cdots & \cdots      & \vdots    \\
+\vdots & \vdots & \ddots &             & \vdots    \\
+\vdots & \vdots & \ddots & u_{n-1,n-1} & 0         \\
+u_{n1} & u_{n2} & \cdots & u_{n, n-1}  & u_{nn}
+\end{bmatrix}$$
+
+Cabe destacar que si es posible que alguno de los coeficientes $u_{i,j}$ de estas 2 matrices sean 0. 
