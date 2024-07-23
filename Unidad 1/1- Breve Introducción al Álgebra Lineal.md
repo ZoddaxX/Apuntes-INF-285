@@ -315,6 +315,72 @@ La cual cumple con las siguientes propiedades:
 - $\text{det}(A^T) = \text{det}(A)$, donde $^T$ es el operador transpuesta.
 - $\text{det}(A) = \prod_{i = 1}^{n}\lambda_i$, donde $\lambda_i$ para $i \in \{1,2,\cdots,n\}$ son los valores propios de $A$.
 
+### Operaciones Fila
+Las operaciones Fila corresponden a ciertas operaciones que una matriz puede realizar sobre si misma, transformando las filas de esta misma de modo que quede una nueva matriz que si bien está expresada de forma distinta, sigue siendo equivalente a la original. Por ejemplo, tomemos el siguiente sistema de ecuaciones:
+$$\begin{align}
+	x =&\ 1 \\
+	x + 3y =&\ 4
+\end{align}$$
+Representando en forma de matriz la parte izquierda del sistema de ecuaciones obtenemos:
+$$\underbrace{
+	\begin{bmatrix}
+	1 & 0 \\
+	1 & 3
+	\end{bmatrix}
+}_{A}
+\begin{bmatrix}
+x \\
+y 
+\end{bmatrix}$$
+A la matriz de la izquierda ($A$) podemos aplicarle las siguientes operaciones fila:
+- $\lambda R_j \rightarrow R_j$, la cual multiplica a la fila $j$ de la matriz el valor del escalar $\lambda$. Por ejemplo, si realizamos sobre la matriz $A$:
+$$A = 
+\begin{bmatrix}
+1 & 0 \\
+1 & 3
+\end{bmatrix}
+- 2R_2 \rightarrow R_2 ∼
+\begin{bmatrix}
+1 & 0 \\
+2 & 6
+\end{bmatrix}
+$$
+- $R_i \leftrightarrow R_j$ , la cual intercambia las filas $i$ y $j$ de nuestra matriz. Usando como ejemplo la matriz $A$:
+$$A = 
+\begin{bmatrix}
+1 & 0 \\
+1 & 3
+\end{bmatrix}
+- R_1 \rightarrow R_2 ∼
+\begin{bmatrix}
+1 & 3 \\
+1 & 0
+\end{bmatrix}$$
+- $R_i + \lambda R_j \rightarrow R_i$, la cual a la fila $i$ de nuestra matriz le suma el valor de la fila $j$ multiplicada por una escalar $\lambda$. Nuevamente usando la matriz $A$:
+$$A = 
+\begin{bmatrix}
+1 & 0 \\
+1 & 3
+\end{bmatrix}
+- R_2 + (-1)R_1 \rightarrow R_2 ∼
+\begin{bmatrix}
+1 & 0 \\
+0 & 3
+\end{bmatrix}$$
+
+Cabe destacar que estas operaciones fila también las podemos aplicar a matrices extendidas, por ejemplo, tomando la matriz extendida del sistema de ecuaciones del ejemplo anterior:
+$$A|c = 
+\left[ \begin{array}{cc|c} 
+1 & 0 & 1 \\ 
+1 & 3 & 4 \\ 
+\end{array} \right] 
+- R_2 + (-1)R_1 \rightarrow R_2 ∼
+\left[ \begin{array}{cc|c} 
+1 & 0 & 1 \\ 
+0 & 3 & 3 \\ 
+\end{array} \right] $$
+Donde nótese además que gracias a esta última operación fila logramos resolver el sistema de ecuaciones anterior!
+
 ## Matrices Particulares
 ### Matriz Identidad
 Esta matriz $I \in \mathbb{R}^{n \times n}$ es una matriz en la que todos los coeficientes de ella son 0, menos los elementos de su diagonal principal, los cuales son solamente 1´s.
@@ -326,6 +392,17 @@ $$I =
 \vdots & \vdots & \ddots & 1      & 0      \\
 0      &      0 & \cdots & 0      & 1      \\
 \end{bmatrix}$$
+
+### Matriz Diagonal
+Una matriz diagonal es una matriz que solo contiene elementos no nulos en su diagonal. Por lo general suelen ser denotadas como $D$:
+$$D = 
+\begin{bmatrix}
+d_1    & 0      & \cdots & 0      \\
+0      & d_2    & \ddots & \vdots \\
+\vdots & \ddots & \ddots & 0      \\
+0      & \cdots & 0      & d_n
+\end{bmatrix}$$
+
 
 ### Matrices Triangulares
 Una matriz triangular es un tipo de matriz tal que sus coeficientes son todos ceros debajo de su diagonal principal si es que se trata de una matriz triangular superior, y sus coeficientes son todos ceros arriba de su diagonal principal si es que se trata de una matriz triangular inferior.
@@ -347,4 +424,4 @@ u_{21} & u_{22} & \cdots & \cdots      & \vdots    \\
 u_{n1} & u_{n2} & \cdots & u_{n, n-1}  & u_{nn}
 \end{bmatrix}$$
 
-Cabe destacar que si es posible que alguno de los coeficientes $u_{i,j}$ de estas 2 matrices sean 0. 
+Cabe destacar que esta estructura no inhabilita que alguno de los coeficientes $u_{i,j}$ de estas 2 matrices sean 0. 

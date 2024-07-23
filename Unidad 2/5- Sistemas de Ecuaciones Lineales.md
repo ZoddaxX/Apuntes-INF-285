@@ -61,7 +61,7 @@ De ambos métodos enseñados/repasados anteriormente, podemos sacar las siguient
 - El método de substitución es simple en la práctica, pero a la hora de implementarlo puede llegar a ser muy engorroso.
 - Método muy simple de explicar pero MUY costoso a nivel computacional. Imagina tener que computar el determinante de cada matriz $n\times n$ que necesites para cada una de las incógnitas que tengas.
 
-El método de substitución es muy engorroso de implementar debido a la potencialmente densa estructura que puede llegar a adoptar la matriz representativa de nuestro sistema de ecuaciones. Ahora, ¿Qué definimos como una estructura no densa para esta matriz? por ejemplo, una [[|matriz diagonal]], donde las soluciones se obtienen dividiendo los coeficientes del lado derecho por los elementos de la diagonal de la matriz. Ahora, de forma más generalizada podemos decir que una matriz posee un patrón adecuado para aplicar este método si esta corresponde a una [[|matriz triangular superior]]. Consideremos por ejemplo este sistema de ecuaciones:
+El método de substitución es muy engorroso de implementar debido a la potencialmente densa estructura que puede llegar a adoptar la matriz representativa de nuestro sistema de ecuaciones. Ahora, ¿Qué definimos como una estructura no densa para esta matriz? por ejemplo, una [[1- Breve Introducción al Álgebra Lineal#Matriz Diagonal|matriz diagonal]], donde las soluciones se obtienen dividiendo los coeficientes del lado derecho por los elementos de la diagonal de la matriz. Ahora, de forma más generalizada podemos decir que una matriz posee un patrón adecuado para aplicar este método si esta corresponde a una [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|matriz triangular superior]]. Consideremos por ejemplo este sistema de ecuaciones:
 $$\begin{align}
 ax + by =& d \tag{5}\\
 0x + cy =& e \tag{6}
@@ -88,7 +88,7 @@ c_1 \\ c_2
 \end{bmatrix}$$
 La cual podemos transformar en una matriz extendida:
 $$ \left[ \begin{array}{cc|c} a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \\ \end{array} \right] $$
-Con esta expresión nosotros podemos realizar una [[|operación fila]] para poder volver el coeficiente que se ubica en la misma posición en la que se encuentra $a_2$ en 0:
+Con esta expresión nosotros podemos realizar una [[1- Breve Introducción al Álgebra Lineal#Operaciones Fila|operación fila]] para poder volver el coeficiente que se ubica en la misma posición en la que se encuentra $a_2$ en 0:
 $$R_2 = R_2-\frac{a_2}{a_1}R_1$$
 la cual nos indica que el resultado de la fila 2 (expresada por $R_2$) va a ser equivalente a restarle la fila 1 siendo esta multiplicada por el coeficiente $\frac{a_2}{a_1}$, con lo que nuestra matriz extendida queda:
 $$ \left[ \begin{array}{cc|c} 
@@ -108,7 +108,7 @@ Que corresponden a las mismas soluciones que obtuvimos para el mismo ejemplo con
 
 En resumidas cuentas, el procedimiento para ejecutar el algoritmo es el siguiente:
 - Construir la matriz extendida a partir del sistema de ecuaciones lineales $A\bm{\text{x}} = \bm{\text{b}}$.
-- Aplicar operaciones fila para transformar el sistema de ecuaciones original, de modo que obtengamos una matriz asociada de forma [[|triangular superior]] y un lado derecho de la forma $U\bm{\text{x}} = \bm{\hat{c}}$.
+- Aplicar operaciones fila para transformar el sistema de ecuaciones original, de modo que obtengamos una matriz asociada de forma [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] y un lado derecho de la forma $U\bm{\text{x}} = \bm{\hat{c}}$.
 - Resolver el sistema de ecuaciones resultantes con [[#Backward Substitution|backward sustitution]].
 
 De forma general, nuestra matriz extendida va a tener la siguiente forma:
@@ -204,7 +204,7 @@ Esto implica que este algoritmo de solución posee una complejidad $\theta (n^2)
 
 ## Factorización $\text{LU}$ de $A$ 
  
- Ya hemos visto que la eliminación Gaussiana logra obtener las soluciones de un sistema de ecuaciones lineales de la forma $Ax=\bm{\text{b}}$ transformando la matriz izquierda a su forma [[|triangular superior]], quedando un sistema de la forma $Ux = \bm{\tilde{b}}$. Ahora, supongamos que nosotros queremos resolver nuevamente el mismo sistema de ecuaciones lineales, solamente cambiando los valores a la derecha de la matriz. 
+ Ya hemos visto que la eliminación Gaussiana logra obtener las soluciones de un sistema de ecuaciones lineales de la forma $Ax=\bm{\text{b}}$ transformando la matriz izquierda a su forma [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]], quedando un sistema de la forma $Ux = \bm{\tilde{b}}$. Ahora, supongamos que nosotros queremos resolver nuevamente el mismo sistema de ecuaciones lineales, solamente cambiando los valores a la derecha de la matriz. 
  Por ejemplo, resolvemos inicialmente:
  $$\begin{align}
  a_{11}x + a_{12}y =&\ b_1\\
@@ -217,11 +217,11 @@ Esto implica que este algoritmo de solución posee una complejidad $\theta (n^2)
  \end{align}$$
  Ahora tendremos un sistema de ecuaciones lineales de la forma $Ax=\bm{\text{d}}$, donde tendremos que aplicar nuevamente la técnica de eliminación Gaussiana para transformar nuestro sistema a uno de la forma $Ux = \bm{\tilde{d}}$. 
 
-Hacer estas 2 tareas con lo que hemos aprendido hasta ahora involucra tener que realizar eliminación Gaussiana un total de 2 veces, lo que involucra la realización de 2 veces $\frac{2}{3}n^3$ operaciones elementales de forma aproximada para poder lograrlo según lo que se repasó en el apartado de [[#Complejidad Computacional de la Eliminación Gaussiana Simple]]. Como podrán haber notado, la expresión $U$ aparece repetida en ambas ecuaciones luego de haber transformado la matriz $A$ a su forma [[|triangular superior]], por lo que como pueden haber intuido en este punto existe una forma de optimizar el cálculo de nuevos sistemas de ecuaciones donde solamente cambiemos su lado derecho.
+Hacer estas 2 tareas con lo que hemos aprendido hasta ahora involucra tener que realizar eliminación Gaussiana un total de 2 veces, lo que involucra la realización de 2 veces $\frac{2}{3}n^3$ operaciones elementales de forma aproximada para poder lograrlo según lo que se repasó en el apartado de [[#Complejidad Computacional de la Eliminación Gaussiana Simple]]. Como podrán haber notado, la expresión $U$ aparece repetida en ambas ecuaciones luego de haber transformado la matriz $A$ a su forma [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]], por lo que como pueden haber intuido en este punto existe una forma de optimizar el cálculo de nuevos sistemas de ecuaciones donde solamente cambiemos su lado derecho.
 
-La factorización $\text{LU}$ de $A$ es bastante simple, lo único que hay que hacer es reescribir la expresión $A$ en función del producto entre una matriz [[|triangular inferior]] $L$ y una matriz [[|triangular superior]] $U$, o sea, expresar $A = LU$. Gracias a la técnica de eliminación Gaussiana somo capaces de obtener la matriz $U$, por lo que ahora nos queda descubrir como es que podemos obtener la matriz $L$, y para ello vamos a utilizar las siguientes afirmaciones: ^8d7f72
+La factorización $\text{LU}$ de $A$ es bastante simple, lo único que hay que hacer es reescribir la expresión $A$ en función del producto entre una matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular inferior]] $L$ y una matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] $U$, o sea, expresar $A = LU$. Gracias a la técnica de eliminación Gaussiana somo capaces de obtener la matriz $U$, por lo que ahora nos queda descubrir como es que podemos obtener la matriz $L$, y para ello vamos a utilizar las siguientes afirmaciones: ^8d7f72
 
-- Sea $L_{ij}(-c)$ una matriz triangular inferior la cual tiene coeficientes no-cero en su diagonal y en la posición ($i$, $j$). En particular la diagonal está compuesta de solamente 1´s y en la posición ($i$, $j$) está el valor $-c$. Entonces $L_{ij}(-c)A$ representa la operación fila "restar a la fila $i$  el valor de la fila $j$ multiplicada por $c$". Esto quiere decir que es posible representar operaciones fila mediante una [[|transformación lineal]]. Por ejemplo:
+- Sea $L_{ij}(-c)$ una matriz triangular inferior la cual tiene coeficientes no-cero en su diagonal y en la posición ($i$, $j$). En particular la diagonal está compuesta de solamente 1´s y en la posición ($i$, $j$) está el valor $-c$. Entonces $L_{ij}(-c)A$ representa la operación fila "restar a la fila $i$  el valor de la fila $j$ multiplicada por $c$". Esto quiere decir que es posible representar operaciones fila mediante una transformación lineal. Por ejemplo:
 $$A = 
 \begin{bmatrix}
 a_{11} & a_{12} \\
@@ -242,7 +242,7 @@ a_{11} & a_{12} \\
 a_{21} - ca_{11} & a_{22} - ca_{12}
 \end{bmatrix}$$
  ^c1cb0e
-- $L_{ij}^{-1}(-c) = L_{ij}c$, es decir, la matriz inversa de $L_{ij}(-c)$ es igual a $L_{ij}(c)$. Esto significa que $L_{ij}(-c)L_{ij}(c) = I$, donde $I$ corresponde a la [[|matriz identidad]]. Por ejemplo:
+- $L_{ij}^{-1}(-c) = L_{ij}c$, es decir, la matriz inversa de $L_{ij}(-c)$ es igual a $L_{ij}(c)$. Esto significa que $L_{ij}(-c)L_{ij}(c) = I$, donde $I$ corresponde a la [[1- Breve Introducción al Álgebra Lineal#Matriz Identidad|matriz identidad]]. Por ejemplo:
 $$\begin{bmatrix}
 1 & 0 \\
 -c & 1
@@ -374,7 +374,7 @@ A =&\
 Con esto podemos interpretar a $L$ como un conjunto de instrucciones operaciones fila expresadas en la forma de transformaciones lineales, los cuales consisten en las operaciones necesarias para realizar la eliminación Gaussiana.  ^a5058e
 
 ### Utilización de la Factorización $\bm{\text{LU}}$ 
-Tal como nosotros vimos con la [[5- Sistemas de Ecuaciones Lineales#Eliminación Gaussiana Simple|eliminación Gaussiana simple]], es bastante factible aprovechar la estructura [[|triangular superior]] de la matriz $U$ con tal de resolver eficientemente el sistema de ecuaciones. En este caso tenemos además que la matriz $L$ posee una estructura [[|triangular inferior]], cual por supuesto podemos aprovechar para calcular rápidamente el valor de esta matriz mediante *Forward Substitution* (que en esencia es lo mismo que [[5- Sistemas de Ecuaciones Lineales#Backward Substitution|Backward Substitution]], solo que esta vez el sistema de ecuaciones nuevo se resuelve de arriba hacia abajo). Para ejemplificar esto tomemos el siguiente sistema de ecuaciones:
+Tal como nosotros vimos con la [[5- Sistemas de Ecuaciones Lineales#Eliminación Gaussiana Simple|eliminación Gaussiana simple]], es bastante factible aprovechar la estructura [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] de la matriz $U$ con tal de resolver eficientemente el sistema de ecuaciones. En este caso tenemos además que la matriz $L$ posee una estructura [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular inferior]], cual por supuesto podemos aprovechar para calcular rápidamente el valor de esta matriz mediante *Forward Substitution* (que en esencia es lo mismo que [[5- Sistemas de Ecuaciones Lineales#Backward Substitution|Backward Substitution]], solo que esta vez el sistema de ecuaciones nuevo se resuelve de arriba hacia abajo). Para ejemplificar esto tomemos el siguiente sistema de ecuaciones:
 $$Ax = \bm{\text{b}}$$
 Supongamos que logramos realizar la factorización $\bm{\text{LU}}$ de $A$: ^b3b0e3
 $$\begin{align}
@@ -586,7 +586,7 @@ $$\underbrace{\begin{bmatrix}
 0 & 0 & 1
 \end{bmatrix}}_{L}$$
 A partir de aquí podemos notar que la permutación realizada por $\bm{\text{P}}$ la podemos leer de esta forma: *En la matriz $A$ quiero que en la fila $i$ esté fila $j$, donde se tiene que cumplir para todos los valores tales que $\bm{\text{P}}_{ij} = 1$*, es decir, para el ejemplo que acabo de dar, se puede leer como "en la fila 1 de la matriz $A$ tiene que estar la fila 2 de la misma matriz, ya que $\bm{\text{P}}_{1,2} = 1$".
-Una vez hayamos elegido nuestro pivote para la columna, necesitamos ahora asignar las [[5- Sistemas de Ecuaciones Lineales#^c1cb0e|operaciones elementales de la matriz]] $L$ necesarias para transformar $A$ a su forma [[|triangular superior]]:
+Una vez hayamos elegido nuestro pivote para la columna, necesitamos ahora asignar las [[5- Sistemas de Ecuaciones Lineales#^c1cb0e|operaciones elementales de la matriz]] $L$ necesarias para transformar $A$ a su forma [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]]:
 $$\underbrace{\begin{bmatrix}
 1           & 0 & 0 \\
 \frac{1}{2} & 1 & 0 \\
