@@ -17,7 +17,7 @@ Antes de empezar a estudiar este nuevo tema más a fondo, es necesario introduci
 
 ## Matriz de Vandermonde
 
-Este algoritmo es posiblemente el más intuitivo y directo a la hora de obtener interpolaciones polinomiales. Tomemos como ejemplo los mismo punto mostrados con [[6- Interpolación Polinomial (Parte 1)#^d5d9a3|esta imagen]], o sea, vamos a tomar 2 puntos de coordenadas ($x_1$, $y_1$) y ($x_2$, $y_2$), para el cual vamos a proponer un polinomio de primer grado de la siguiente forma:
+Este algoritmo es posiblemente el más intuitivo y directo a la hora de obtener interpolaciones polinomiales. Tomemos como ejemplo los mismo punto mostrados con [[6- Interpolación Polinomial (Parte 1)#^d5d9a3|esta imagen]], o sea, vamos a tomar 2 puntos de coordenadas ($x_1$, $y_1$) y ($x_2$, $y_2$), para el cual vamos a proponer un polinomio interpolador de primer grado con la siguiente forma:
 $$p(x) = a_1x + a_0$$
 La razón por la que se elige este polinomio es porque este posee 2 grados de libertad (dados por $a_1$ y $a_0$) además que se tenemos que cumplir 2 condiciones, $p(x_1) = y_1$ y $p(x_2) = y_2$, con las cuales podemos formar el siguiente sistema de ecuaciones:
 $$\begin{align}
@@ -114,11 +114,11 @@ donde $L_1(x) = \frac{(x-x_2)}{(x_1-x_2)}$ y $L_2(x) = \frac{(x - x_1)}{x_2 - x_
 
 Y aquí tenemos nuestro tercer algoritmo para poder realizar interpolaciones polinomiales. Este algoritmo es de hecho derivable del mismo método de interpolación de Lagrange, además de que permite reducir considerablemente la cantidad de operaciones elementales necesarias para poder evaluar nuestro polinomio construido (ya en para Lagrange tenemos que evaluar en nuestro polinomio obtenido todos los productos $(x - x_1)(x - x_2)\cdots(x - x_{i-1}) (x - x_{i+1})\cdots(x - x_n)$ del numerador de cada $L_i(x)$ con tal de poder evaluar finalmente $p(x)$), y además, existe la posibilidad de que necesitemos menos operaciones elementales para poder armar nuestro polinomio interpolador. 
 
-Definamos A $l(x)$ de la siguiente forma:
+Definamos a $l(x)$ de la siguiente forma:
 $$l(x) = \prod_{k=1}^n (x - x_k)$$
-Notemos que con esta definición estamos diciendo que, a diferencia de como habíamos definido $l_i(x)$ en Lagrange, si existe el término ($x - x_i$) dentro de la multiplicatoria. Expresemos ahora nuestra expresión $l_i(x)$:
+Notemos que con esta definición estamos diciendo que, a diferencia de como habíamos definido $l_i(x)$ en Lagrange, si existe el término ($x - x_i$) dentro de la multiplicatoria. Obtengamos ahora nuestra expresión $l_i(x)$:
 $$l_i(x) = \frac{l(x)}{(x-x_i)}$$
-Con lo que obtenemos una expresión $l_i(x)$ que es equivalente al caso anterior. Ahora, es posible obtener el denominador de $L_i(x)$ que estamos buscando de la siguiente forma:
+Con lo que obtenemos una definición de $l_i(x)$ que es equivalente al caso anterior. Ahora, es posible obtener el denominador de $L_i(x)$ que estamos buscando de la siguiente forma:
 $$w_i = \frac{1}{l_i(x_i)} = \frac{1}{l'(x_i)}$$
 Por lo que finalmente podemos expresar $L_i(x)$:
 $$L_i(x) = \frac{l(x)}{(x-x_i)}w_i$$
@@ -146,5 +146,5 @@ $$\begin{align}
 p(x) =&\ l(x)\sum_{i=1}^n y_i\frac{w_i}{(x-x_i)} \\
 =&\ \frac{\sum_{i=1}^n y_i\frac{w_i}{(x-x_i)}}{\sum_{i=1}^n \frac{w_i}{(x-x_i)}}
 \end{align}$$
-Lo que ahora sí corresponde a la expresión de la interpolación baricéntrica! Esta fórmula nos permite evaluar nuestro polinomio $p(x)$ a velocidades mucho mas rápidas que con la interpolación de Lagrange, esto es debido a que podemos observar de la expresión $l_i(x) = (x - x_1)(x - x_2)\cdots(x - x_{i-1}) (x - x_{i+1})\cdots(x - x_n)$ que esta depende de los valores que recibamos de $x$, y esta misma hay que evaluarla para cada $L_i(x)$ existente en nuestro polinomio, lo que hace que nos demoremos una cantidad de $O(n^2)$ en evaluar nuestro polinomio para algún $x$. Sin embargo, gracias a la interpolación polinomial hemos logrado reducir la expresión de $l_i(x)$ al valor $w_i = \frac{1}{l_i(x_i)}$, el cual al depender de $x_i$ en vez del valor de $x$ pues esto hace que SOLO necesitemos calcular cada $w_i$ de nuestro polinomio una sola vez, lo que implica que la primera evaluación del polinomio tenga un tiempo de $o(n^2)$ para que las evaluaciones subsiguientes tengan un tiempo de $O(n)$ en calcularse, ya que simplemente tendríamos que calcular las sumatorias del numerador y denominador de la fracción, aparte de tener que resolver esta misma.
+Lo que ahora sí corresponde a la expresión de la interpolación baricéntrica! Esta fórmula nos permite evaluar nuestro polinomio $p(x)$ a velocidades mucho mas rápidas que con la interpolación de Lagrange, esto es debido a que podemos observar de la expresión $l_i(x) = (x - x_1)(x - x_2)\cdots(x - x_{i-1}) (x - x_{i+1})\cdots(x - x_n)$ que esta depende de los valores que recibamos de $x$, y esta misma hay que evaluarla para cada $L_i(x)$ existente en nuestro polinomio, lo que hace que nos demoremos una cantidad de $O(n^2)$ en evaluar nuestro polinomio para algún $x$. Sin embargo, gracias a la interpolación polinomial hemos logrado reducir la expresión de $l_i(x)$ al valor $w_i = \frac{1}{l_i(x_i)}$, el cual al depender de $x_i$ en vez del valor de $x$ pues esto hace que SOLO necesitemos calcular cada $w_i$ de nuestro polinomio una sola vez, lo que implica que la primera evaluación del polinomio tenga un tiempo de $O(n^2)$ para que las evaluaciones subsiguientes tengan un tiempo de $O(n)$ en calcularse, ya que simplemente tendríamos que calcular las sumatorias del numerador y denominador de la fracción, aparte de tener que resolver esta misma.
 
