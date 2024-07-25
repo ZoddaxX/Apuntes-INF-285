@@ -144,11 +144,11 @@ $$\begin{align}
 Es decir, estamos buscando la mejor combinación lineal de los vectores $\bm{\text{v}}_1$ y $\bm{\text{v}}_2$ para aproximar el valor de $\bm{\text{b}}$, el cual nos permitirá minimizar lo más posible el valor de residuo $\bm{\text{r}}$, en donde se considera la mejor combinación lineal aquella que minimice el error cuadrático:
 $$E(x,y) = ||r||_2^2 = ||\bm{\text{b}} - a\bm{\text{v}}_1 - b\bm{\text{v}}_2||_2^2$$
 
-![[Pasted image 20240724222757.png]]
+![[Apuntes_INF-285_2024-v0613.pdf#page=132&rect=109,561,499,727|Apuntes_INF-285_2024-v0613, p.131]]
 
 Como podemos apreciar en esta imagen, debido a que la matriz $A$ es un valor ya conocido y fijo relacionado con el sistema de ecuaciones como tal, dependemos del valor de $\overline{\bm{\text{x}}}$ para poder minimizar el valor del mínimo cuadrado, donde para el ejemplo actual equivale a $\overline{\bm{\text{x}}} = \begin{bmatrix} \overline{a} & \overline{b} \end{bmatrix}^T$. De forma más compacta y con el fin de que se pueda entender lo que se busca desarrollar a continuación se adjunta la siguiente imagen también presente dentro de los apuntes del curso:
 
-![[Pasted image 20240724223600.png]]
+![[Apuntes_INF-285_2024-v0613.pdf#page=133&rect=157,546,445,720|Apuntes_INF-285_2024-v0613, p.132]]
 
 Alguno de ustedes probablemente hayan podido inferir que la clave es la ortogonalidad entre $\bm{\text{r}} = \bm{\text{b}} - A\overline{\bm{\text{x}}}$ y $A\bm{\text{x}}$, por lo que si $r$ y $A\bm{\text{x}}$ son ortogonales se debe cumplir que su producto cruz es 0, lo que se traduce en la siguiente expresión:
 $$\begin{align}
