@@ -9,3 +9,19 @@
 .metadata-container{
     display: block;
 }
+
+.highlight-box {
+    background-color: #e8cfb5;
+    border: 3px solid #FF9933;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000000; 
+}
+
+.red-text {
+    color: #FF0000; /* Cambia este valor por el color que desees */
+}
+
+.blue-text {
+    color: #305af1; /* Cambia este valor por el color que desees */
+}

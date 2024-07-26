@@ -1,5 +1,6 @@
 $$
 \newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
 $$
 $$\bm{x} = \begin{bmatrix} r_x & r_y \end{bmatrix}$$Matriz vertical:
 $$\begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ \end{bmatrix}$$Matriz horizontal:
@@ -40,4 +41,4 @@ Bloque de pseudocódigo:
 Límite:
 $$\lim\limits_{x \to \infty} f(x)$$
 Raíz n-ésima de un número:
-$$f(x) = \sqrt[n]{x}$$
+$$f(x) = \sqrt[n]{x}$$ 

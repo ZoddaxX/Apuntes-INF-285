@@ -169,8 +169,9 @@ $$\begin{align}
 Lo cual podemos reducir a:
 $$A^*\ A\overline{\bm{\text{x}}} = A^*\ \bm{\text{b}}$$
 Expresión a la cual se le conoce como las **Ecuaciones Normales**, el que nos va a permitir obtener una expresión explícita para $\overline{\bm{\text{x}}}$:
-$$\overline{\bm{\text{x}}} = (A^*\ A)^{-1} A^*\ \bm{\text{b}}$$
-Aunque por lo general no es necesario obtener la inversa de $A$, suele ser suficiente con resolver el sistema de ecuaciones lineales asociado $A^*\ A\overline{\bm{\text{x}}} = A^*\ \bm{\text{b}}$, donde gracias a que la matriz $A^*\ A$ es una matriz cuadrada de dimensiones $n \times n$ es posible, nuevamente, utilizar [[5- Sistemas de Ecuaciones Lineales|alguno de los algoritmos vistos anteriormente]].
+$$\overline{\bm{\text{x}}} = (A^*\ A)^{-1} A^*\ \bm{\text{b}}$$ ^a7f86c
+
+Aunque por lo general no es necesario obtener la inversa de $A$, suele ser suficiente con resolver el sistema de ecuaciones lineales asociado $A^*\ A\overline{\bm{\text{x}}} = A^*\ \bm{\text{b}}$, donde gracias a que la matriz $A^*\ A$ es una matriz cuadrada de dimensiones $n \times n$ es posible, nuevamente, utilizar [[5- Sistemas de Ecuaciones Lineales|alguno de los algoritmos vistos anteriormente]]. 
 
 Ahora, revisemos nuevamente el problema de los cuadrados propuesto en la [[8- Mínimos Cuadrados#^c52b1e|ecuación 5]]:
 $$\underbrace{
@@ -253,3 +254,112 @@ $$\begin{bmatrix}
 Lo que equivale a exactamente lo mismo que obtuvimos con el método anterior, solo que esta vez llegamos a ello utilizando un método y punto de vista distintos.
 
 ## Factorización $QR$ 
+
+La factorización $QR$ es útil cuando se quieren obtener los mínimos cuadrados sin tener que computar las [[8- Mínimos Cuadrados#^a7f86c|Ecuaciones Normales]]. Esto no quiere decir que las Ecuaciones Normales no sean necesarias o que sean menos eficientes de computar, es simplemente una herramienta adicional para tener como opción cuando se necesite (como en el certamen).
+
+### Estructura de $Q$ y $R$
+La factorización $QR$ impone la siguiente estructura para las matrices $Q$ y $R$:
+$$A = QR$$
+Donde $R$ corresponde a una matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]], y $Q$ es una [[|matriz unitaria]] con la particularidad adicional de que sus columnas $q_i$ deben generar el mismo espacio vectorial que las columnas $a_i$, es decir, se debe cumplir que $\text{Range}(A)= \text{Range}(B)$. 
+
+Para fines de mejorar la comprensión de esta estructura de factorización, se introducen los siguientes 2 teoremas:
+- *Para cualquier matriz $A \in \mathbb{C}^{m \times n}$ y matriz $Q \in \mathbb{C}^{m \times m}$ unitaria, tenemos:*
+$$||QA||_2 = ||A||_2,\ ||QA||_F = ||A||_F$$
+  El cual nos indica que el producto por una matriz unitaria no afecta a la [[|norma 2 matricial]] ni la [[|norma de Frobenious]] de la matriz resultante. Es gracias a este teorema que podemos utilizar en esta sección la siguiente implicancia:
+  $$||Q\bm{\text{x}}||_2 = ||\bm{\text{x}}||_2,$$
+  el cual nos dice que las matrices unitarias no cambian la [[|norma 2 vectorial]].
+
+- *Para cualquier matriz $Q \in \mathbb{C}^{n \times n}$ unitaria se tiene que $|\lambda| = 1$, donde $\lambda$ es un* [[|valor propio]] *de $Q$* 
+
+Por último, es importante recordar esta propiedad de las [[|matrices unitarias cuadradas]]: *Sea $Q \in \mathbb{C}^{m \times m}$, entonces:*
+$$Q^{-1} = Q^*$$
+Si $Q \in \mathbb{C}^{m \times m}$, entonces $Q^{-1} = Q^T$. Esto significa que si quisiéramos resolver un sistema de ecuaciones lineales de la forma $Q\bm{\text{x}} = \bm{\text{b}}$, entonces la solución seria simplemente $\bm{\text{x}} = Q^*\bm{\text{b}}$., lo que implicaría que no seria necesario aplicar $\bm{\text{P}}A\bm{\text{L}}U$ y otro algoritmo de solución.
+
+En el siguiente punto donde se habla del algoritmo de solución de este tipo de factorización solo puedo desear que: 1- Les haya ido bien en MAT-022.  2- Les haya gustado el apartado de matrices del curso. De incumplirse alguna de estas condiciones lo más probable es que les termine dando asco esta parte.
+
+### Ortonormalización de Gram-Schmidt
+La ortonomalización de Gram-Schmidt es uno de varios algoritmos que nos otorga esta factorización y, para bien o para mal, consistirá en el procedimiento que veremos en detalle. En pocas palabras, vamos a ir construyendo columna a columna nuestra matriz $Q$ y coeficiente por coeficiente nuestra matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] $R$ a partir de la matriz $A$
+
+
+> [!important] ¡MUY IMPORTANTE!
+> En este punto es importante destacar que existen 2 variantes de la factorización QR para una matriz $A \in \mathbb{R}^{m \times n}$, con $m > n$. Una es la factorización QR-reducida, es decir $\hat{Q} \hat{R}$, y la otra es la factorización QR-full, es decir $QR$. Cabe destacar que ambas describen exactamente a la matriz $A$, es decir,
+>
+> $$A = \hat{Q} \hat{R} = QR$$
+>
+> La diferencia es que $\hat{Q} \in \mathbb{R}^{m \times n}$ y $\hat{R} \in \mathbb{R}^{n \times n}$, mientras que $Q \in \mathbb{R}^{m \times m}$ y $R \in \mathbb{R}^{m \times n}$. En particular se cumple la siguiente relación,
+>
+> $$Q = [\hat{Q}, \check{Q}],$$
+> $$R = \begin{bmatrix} \hat{R} \\ \underline{\underline{0}} \end{bmatrix},$$
+>
+> donde $\check{Q} = [\mathbf{q}_{n+1}, \ldots, \mathbf{q}_m] \in \mathbb{R}^{m \times (m-n)}$ y $\underline{\underline{0}}$ es la matriz nula de dimensión $(m-n) \times n$. Es decir, las primeras $n$ columnas de la matriz $Q$ corresponden a la matriz $\hat{Q}$ y las siguientes $(m-n)$ columnas, corresponde a la matriz $\check{Q}$ que además contiene vectores ortonormales respecto de las columnas de $\hat{Q}$ y entre ellos mismos (no, yo tampoco entendí casi nada de esta parte). Por otra parte, las primeras $n$ filas de nuestra matriz $R$ corresponden a la matriz $\hat{R}$, donde las columnas que quedan están compuestas de coeficientes nulos. Gracias a las definiciones anteriores, es posible verificar las identidades anteriores resolviendo el producto $QR$:
+> $$\begin{align}
+> 	QR =&\ \begin{bmatrix} \hat{Q} & \check{Q} \end{bmatrix} \begin{bmatrix} \hat{R} \\ \underline{\underline{0}} \end{bmatrix} \\
+> 	=&\ \hat{Q}\hat{R} + \check{Q}\underline{\underline{0}} \\
+> 	=&\ \hat{Q}\hat{R} \\
+> 	=&\ A
+> \end{align}$$
+> Y es debido a esto que primero vamos a construir la factorización QR-reducida, es decir $\hat{Q} \hat{R}$.
+
+Para describir este algoritmo, consideremos la matriz $A \in \mathbb{R}^{m \times n}$, con $m > n$, la cual podemos describir en el siguiente formato de vectores columna:
+$$A = \begin{bmatrix} \bm{\text{a}}_1, & \bm{\text{a}}_2, & \cdots, &\bm{\text{a}}_n \end{bmatrix}$$
+donde $a_i \in \mathbb{R}^m$ con $i \in \{1,2,\cdots,n\}$. De esta forma podemos escribir convenientemente la identidad $A = \hat{Q}\hat{R}$:
+$$\begin{bmatrix} \bm{\text{a}}_1, & \bm{\text{a}}_2, & \cdots, &\bm{\text{a}}_n \end{bmatrix} = 
+\underbrace{
+	\begin{bmatrix}
+		\bm{\text{q}}_1, & \bm{\text{q}}_2, & \cdots & \bm{\text{q}}_n
+	\end{bmatrix}
+}_{\hat{Q}}
+\underbrace{
+	\begin{bmatrix}
+		r_{11} & r_{12} & r_{13} & \cdots & r_{1n} \\
+		0      & r_{22} & r_{23} & \cdots & r_{2n} \\
+		0      & 0      & r_{33} & \cdots & r_{3n} \\
+		\vdots & \vdots & \ddots & \ddots & \vdots \\
+		0      & \cdots & \cdots & 0      & r_{nn}
+	\end{bmatrix}
+}_{\hat{R}}$$
+Recordando que la matriz $Q$ es [[|ortonormal]], esto implica que sus columnas $\bm{\text{q}}_i$ deben ser ortogonales entre sí y que su [[|norma-2]] de cada una de sus columnas debe ser 1, por lo que podemos expresar las siguientes condiciones para las columnas de $Q$:
+$$\begin{align}
+	\bm{\text{q}}_i^T\bm{\text{q}}_j =&\ 0 &, \text{para}\ i \neq j \tag{6} \\
+	||\bm{\text{q}}_i||_2^2 =&\ 1 \tag{7}
+\end{align}$$
+
+^b40e5e
+
+Multiplicando las matrices $\hat{Q}$ y $\hat{R}$ obtenemos:
+$$\begin{bmatrix} \bm{\text{a}}_1, & \bm{\text{a}}_2, & \cdots, &\bm{\text{a}}_n \end{bmatrix} = 
+\begin{bmatrix}
+	r_{11}\bm{\text{q}}_1, & r_{12}\bm{\text{q}}_2 + r_{22}\bm{\text{q}}_2, & \cdots, & \displaystyle\sum_{i = 1}^k r_{ik}\bm{\text{q}}_i, & \cdots, & \displaystyle\sum_{i = 1}^n r_{in}\bm{\text{q}}_i 
+\end{bmatrix}$$
+De la igualdad obtenida para la primera columna obtenemos la siguiente ecuación:
+$$\overbrace{\bmt{a}_1}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{11}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{1}}_{\text{\textcolor{red}{Desconocido}}}$$
+En este caso obtenemos una ecuación para 2 incógnitas, o al menos eso parece a simple vista... ¿Recuerdan que anteriormente mencioné que a un sistema de ecuaciones para estos casos podíamos añadir condiciones para nuestras incógnitas hasta que nuestro sistema tuviera una solución fija? Pues estas condiciones ya las tenemos, y estas equivalen a las [[8- Mínimos Cuadrados#^b40e5e|ecuaciones 6 y 7]]! Sin embargo, ¿Cómo podemos usar estas propiedades de la ortonormalidad para despejar $r_{11}$ y $\bmt{q}_1$? como con las nuevas condiciones podemos formar un sistema de ecuaciones con más ecuaciones que incógnitas, podemos tomarnos la libertad de escoger cualquiera de estas 2 a la hora de obtener estos valores, lo que nos deja con 2 alternativas:
+- Multiplicar por la izquierda por $\bmt{q}_1^*$, es decir, obtener el producto interno con respecto a $\bmt{q}_1$. 
+- Obtener la [[|norma 2]] en ambos lados de la ecuación.
+
+Para el caso de la primera alternativa obtenemos:
+$$\begin{align}
+	\bmt{a}_1 =&\ r_{11}\bmt{q}_1 \\
+	\bmt{q}_1^*\bmt{a}_1 =&\ r_{11} \underbrace{\bmt{q}_1^T\bmt{q}_1}_1 \\
+	\bmt{q}_1^T\bmt{a}_1 =&\ r_{11},
+\end{align}$$
+donde naturalmente se utilizó que $\bmt{q}_1^T\bmt{q}_1 = ||\bm{\text{q}}_1||_2^2 = 1$, o sea, la [[8- Mínimos Cuadrados#^b40e5e|ecuación 7]]. Aún así, todavía nos quedan componentes desconocidas a ambos lados de la ecuación, por lo que en el fondo acabamos de llegar a un punto muerto, así te toca probar con nuestra segunda alternativa:
+$$\begin{align}
+	\bmt{a}_1 =&\ r_{11}\bmt{q}_1 \\
+	||\bmt{a}_1||_2 =&\ ||r_{11}\bmt{q}_1||_2 \\
+	||\bmt{a}_1||_2 =&\ |r_{11}|\ \underbrace{||\bmt{q}_1||_2}_1 \\
+	||\bmt{a}_1||_2 =&\ |r_{11}|,
+\end{align}$$
+donde ahora acabamos de utilizar el hecho de que los vectores son unitarios. Podemos notar ahora que nosotros si somos capaces de calcular el lado izquierdo $||\bmt{a}_1||_2^2$ de la ecuación, ahora, el lado derecho debido al valor absoluto de la expresión $|r_{11}|$ nos obliga a tomar una decisión entre $||\bmt{a}_1||_2$ y $-||\bmt{a}_1||_2$. Este último punto nos vuelve a demostrar que la factorización $QR$ no es única, aunque para términos prácticos del curso vamos a considerar el valor positivo (a no ser que en algún momento se diga lo contrario), es decir:
+$$r_{11} = ||\bmt{a}_1||_2$$
+Esto implica que de aquí en adelante vamos a considerar que todos los coeficientes de la diagonal $\hat{R}$ son positivos. Con esto hecho ahora tenemos lo siguiente:
+$$\overbrace{\bmt{a}_1}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{11}}_{\text{\textcolor{cyan}{Conocido}}}\ \ \underbrace{\bmt{q}_{1}}_{\text{\textcolor{red}{Desconocido}}}$$
+Y ahora para obtener $\bmt{q}_1$ basta con despejarlo de esta misma ecuación:
+$$\bmt{q}_1 = \frac{\bmt{a}_1}{r_{11}}$$
+Por lo que ahora sabemos despejar la primera ecuación de nuestro sistema de ecuaciones completo, así que ahora queda buscar la expresión general de esta estrategia de despeje. Tomemos ahora el caso de nuestra segunda ecuación:
+$$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{12}}_{\text{\textcolor{red}{Desconocido}}}\overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{22}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
+Siguiendo el mismo camino que hicimos anteriormente:
+$$\begin{align}
+	\bmt{q}_1^T\bmt{a}_2 =&\ r_{12}\ \underbrace{\bmt{q}_1^T\bmt{q}_1}_1 + r_{22}\ \underbrace{\bmt{q}_1^T\bmt{q}_2}_0 \\
+	\bmt{q}_1^T\bmt{a}_2 =&\ r_{12}
+\end{align}$$
