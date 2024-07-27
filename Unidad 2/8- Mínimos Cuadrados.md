@@ -278,7 +278,7 @@ Si $Q \in \mathbb{C}^{m \times m}$, entonces $Q^{-1} = Q^T$. Esto significa que 
 En el siguiente punto donde se habla del algoritmo de solución de este tipo de factorización solo puedo desear que: 1- Les haya ido bien en MAT-022.  2- Les haya gustado el apartado de matrices del curso. De incumplirse alguna de estas condiciones lo más probable es que les termine dando asco esta parte.
 
 ### Ortonormalización de Gram-Schmidt
-La ortonomalización de Gram-Schmidt es uno de varios algoritmos que nos otorga esta factorización y, para bien o para mal, consistirá en el procedimiento que veremos en detalle. En pocas palabras, vamos a ir construyendo columna a columna nuestra matriz $Q$ y coeficiente por coeficiente nuestra matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] $R$ a partir de la matriz $A$
+La ortonomalización de Gram-Schmidt es uno de varios algoritmos que nos otorga esta factorización y, para bien o para mal, consistirá en el procedimiento que veremos en detalle. En pocas palabras, vamos a ir construyendo columna a columna nuestra matriz $Q$ y coeficiente por coeficiente nuestra matriz [[1- Breve Introducción al Álgebra Lineal#Matrices Triangulares|triangular superior]] $R$ a partir de la matriz $A$.
 
 
 > [!important] ¡MUY IMPORTANTE!
@@ -332,7 +332,8 @@ $$\begin{bmatrix} \bm{\text{a}}_1, & \bm{\text{a}}_2, & \cdots, &\bm{\text{a}}_n
 	r_{11}\bm{\text{q}}_1, & r_{12}\bm{\text{q}}_2 + r_{22}\bm{\text{q}}_2, & \cdots, & \displaystyle\sum_{i = 1}^k r_{ik}\bm{\text{q}}_i, & \cdots, & \displaystyle\sum_{i = 1}^n r_{in}\bm{\text{q}}_i 
 \end{bmatrix}$$
 De la igualdad obtenida para la primera columna obtenemos la siguiente ecuación:
-$$\overbrace{\bmt{a}_1}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{11}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{1}}_{\text{\textcolor{red}{Desconocido}}}$$
+$$\overbrace{\bmt{a}_1}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{11}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{1}}_{\text{\textcolor{red}{Desconocido}}} \tag{8}$$ ^93dad4
+
 En este caso obtenemos una ecuación para 2 incógnitas, o al menos eso parece a simple vista... ¿Recuerdan que anteriormente mencioné que a un sistema de ecuaciones para estos casos podíamos añadir condiciones para nuestras incógnitas hasta que nuestro sistema tuviera una solución fija? Pues estas condiciones ya las tenemos, y estas equivalen a las [[8- Mínimos Cuadrados#^b40e5e|ecuaciones 6 y 7]]! Sin embargo, ¿Cómo podemos usar estas propiedades de la ortonormalidad para despejar $r_{11}$ y $\bmt{q}_1$? como con las nuevas condiciones podemos formar un sistema de ecuaciones con más ecuaciones que incógnitas, podemos tomarnos la libertad de escoger cualquiera de estas 2 a la hora de obtener estos valores, lo que nos deja con 2 alternativas:
 - Multiplicar por la izquierda por $\bmt{q}_1^*$, es decir, obtener el producto interno con respecto a $\bmt{q}_1$. 
 - Obtener la [[|norma 2]] en ambos lados de la ecuación.
@@ -363,3 +364,89 @@ $$\begin{align}
 	\bmt{q}_1^T\bmt{a}_2 =&\ r_{12}\ \underbrace{\bmt{q}_1^T\bmt{q}_1}_1 + r_{22}\ \underbrace{\bmt{q}_1^T\bmt{q}_2}_0 \\
 	\bmt{q}_1^T\bmt{a}_2 =&\ r_{12}
 \end{align}$$
+Por lo que debido a que ya tenemos los valores de $\bmt{a}_2$ y $\bmt{q}_1$ podemos despejar tranquilamente la incógnita $r_{12}$, con lo que el estado de nuestra ecuación seria la siguiente:
+$$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} = \overbrace{r_{12}}^{\text{\textcolor{cyan}{Conocido}}}\ \ \overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{22}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
+Ahora, fíjense en la estructura de la ecuación cuando mueva todos los valores conocidos hasta ahora hacia la izquierda:
+$$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} -\overbrace{r_{12}}^{\text{\textcolor{cyan}{Conocido}}}\ \ \overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{22}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
+Lo que acaba de pasar es que se armó una ecuación con la misma forma que la de la [[8- Mínimos Cuadrados#^93dad4|ecuación 8]], por lo tanto podemos aplicar la misma técnica de la [[|norma-2]] que usamos anteriormente para poder despejar el valor de $r_{22}$:
+$$\begin{align}
+	\bmt{a}_2 - r_{12}\bmt{q}_1 =&\ r_{22}\bmt{q}_2 \\
+	 ||\bmt{a}_2 - r_{12}\bmt{q}_1||_2 =&\ ||r_{22}\bmt{q}_2||_2 \\
+	 =&\ r_{22}\ \underbrace{||\bmt{q}_2||_2}_1 \\
+	 =&\ r_{22} 
+\end{align}$$
+Con lo que podemos concluir que $r_{22} = ||\bmt{a}_2 - r_{12}\bmt{q}_1||_2$, con lo que actualizamos una vez más el estado de nuestra ecuación:
+$$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} -\overbrace{r_{12}}^{\text{\textcolor{cyan}{Conocido}}}\ \ \overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} = \overbrace{r_{22}}^{\text{\textcolor{cyan}{Conocido}}}\underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
+Por lo que al igual que con la ecuación que resolvimos anteriormente podemos obtener el valor de $\bmt{q}_2$ con tan solo igualar manipular un poco esta ecuación:
+$$\bmt{q}_2 = \frac{\bmt{a}_2 - r_{12}\bmt{q}_1}{r_{22}}$$
+Con lo que finalmente hemos resuelto la segunda ecuación de nuestro sistema de ecuaciones! Ahora por completitud y para que todos estén 100% seguros de que no hay que usar otro truco arcano para resolver algún problema nuevo que se nos presente en las subsiguientes ecuaciones de nuestro sistema vamos a resolver una tercera ecuación:
+$$\overbrace{\bmt{a}_3}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{13}}_{\text{\textcolor{red}{Desconocido}}}\overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{23}}_{\text{\textcolor{red}{Desconocido}}}\ \ \overbrace{\bmt{q}_{2}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{33}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{3}}_{\text{\textcolor{red}{Desconocido}}}$$
+De lo que hemos aprendido anteriormente podemos despejar los valores $r_{13}$:
+$$\begin{align}
+	\bmt{a}_3 =&\ r_{13}\bmt{q}_1 + r_{23}\bmt{q}_2 + r_{33}\bmt{q}_3 \\
+	\bmt{q}_1^T\bmt{a}_3 =&\ r_{13}\bmt{q}_1^T\bmt{q}_1 + r_{23}\bmt{q}_1^T\bmt{q}_2 + r_{33}\bmt{q}_1^T\bmt{q}_3 \\
+	=&\ r_{13}\underbrace{\bmt{q}_1^T\bmt{q}_1}_1 + r_{23}\underbrace{\bmt{q}_1^T\bmt{q}_2}_0 + r_{33}\underbrace{\bmt{q}_1^T\bmt{q}_3}_0 \\
+	=&\ r_{13}
+\end{align}$$
+y el valor de $r_{23}$:
+$$\begin{align}
+	\bmt{a}_3 =&\ r_{13}\bmt{q}_1 + r_{23}\bmt{q}_2 + r_{33}\bmt{q}_3 \\
+	\bmt{q}_2^T\bmt{a}_3 =&\ r_{13}\bmt{q}_2^T\bmt{q}_1 + r_{23}\bmt{q}_2^T\bmt{q}_2 + r_{33}\bmt{q}_2^T\bmt{q}_3 \\
+	=&\ r_{13}\underbrace{\bmt{q}_2^T\bmt{q}_1}_0 + r_{23}\underbrace{\bmt{q}_2^T\bmt{q}_2}_1 + r_{33}\underbrace{\bmt{q}_2^T\bmt{q}_3}_0 \\
+	=&\ r_{23}
+\end{align}$$
+Ahora, podemos obtener $r_{33}$ moviendo todas las variables conocidas y aplicando, nuevamente, [[|norma-2]]:
+$$\begin{align}
+	\bmt{a}_3 - r_{13}\bmt{q}_1 - r_{23}\bmt{q}_2 =&\ r_{33}\bmt{q}_3 \\
+	||\bmt{a}_3 - r_{13}\bmt{q}_1 - r_{23}\bmt{q}_2||_2 =&\ r_{33}\ ||\bmt{q}_3||_2 \\
+	=&\ r_{33}
+\end{align}$$
+Y finalmente, ahora que tenemos todas las incógnitas de nuestra ecuación menos el término $\bmt{q}_3$ vamos a, nuevamente, despejar de la misma ecuación que tenemos este valor:
+$$\bmt{q}_3 = \frac{\bmt{a}_3 - r_{13}\bmt{q}_1 - r_{23}\bmt{q}_2}{r_{33}}$$
+Con lo que hemos sido capaces de obtener todos los términos desconocidos... de nuevo.
+
+Finalmente, podemos generalizar las ecuaciones de nuestro sistema de ecuaciones $A = \hat{Q}\hat{R}$ de esta forma:
+$$\overbrace{\bmt{a}_k}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{1,k}}_{\text{\textcolor{red}{Desconocido}}}\overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{2,k}}_{\text{\textcolor{red}{Desconocido}}}\ \ \overbrace{\bmt{q}_{2}}^{\text{\textcolor{cyan}{Conocido}}} + \cdots + \underbrace{r_{k-1,k}}_{\text{\textcolor{red}{Desconocido}}}\ \ \overbrace{\bmt{q}_{k-1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{k,k}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{k}}_{\text{\textcolor{red}{Desconocido}}}$$
+Donde las expresiones de los términos desconocidos de la ecuación se expresan de la siguiente forma:
+$$\begin{align}
+	r_{i,k} =&\ \bmt{q}_i^T\bmt{a}_k, & \text{para } i \in \{1,2,\cdots,n\} \\
+	r_{k,k} =&\ \left|\left| \bmt{a}_k - \sum_{i=1}^{k-1}r_{i,k}\bmt{q}_i \right|\right|_2 \\
+	\bmt{q}_k =&\ \frac{\bmt{a}_k - \sum_{i=1}^{k-1} r_{i,k}\bmt{q}_i}{r_{k,k}}
+\end{align}$$
+Lo cual es válido para $k \in \{1,2,\cdots,n\}$. Este procedimiento es el que se conoce como la Ortonormalización Clásica de Gram-Schmidt, el cual podemos formalizar en el siguiente algoritmo:
+
+```python
+for k in range(1, n):
+	y = A[k]
+	for i in range(1, k):
+		R[i][k] = Transpose(Q[i]) * A[k]
+		y = y - R[i][k] * Q[i]		
+	R[k][k] = Norm_2(y)
+	Q[k] = y / R[k][k]
+```
+
+El único problema de este algoritmo es que asume que todas las ecuaciones son linealmente independientes entre sí, ya que de lo contrario obtendríamos algún coeficiente nulo y no se podría continuar con el algoritmo (por lo que este podría usarse además para verificar la linealidad de un sistema...).
+
+Ahora, existe una forma alternativa de expresar este algoritmo que nos permita corregir lo más posible el error computacional que pueda surgir al usar aritmética de [[2- Estándar de Punto Flotante y Pérdida de Importancia#^aeafae|punto flotante]]. Tomemos como ejemplo la tercera ecuación que despejamos:
+$$\overbrace{\bmt{a}_3}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{13}}_{\text{\textcolor{red}{Desconocido}}}\overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{23}}_{\text{\textcolor{red}{Desconocido}}}\ \ \overbrace{\bmt{q}_{2}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{33}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{3}}_{\text{\textcolor{red}{Desconocido}}}$$
+Al igual que en el caso anterior, acá se obtiene que $r_{13} = \bmt{q}_1^T\bmt{a}_3$, la diferencia radica en la forma en la que expresamos el resultado de $r_{23}$ en adelante. En este caso nosotros por ortogonalidad consideramos que $\bmt{q}_2^T\bmt{q}_1 = 0$, sin embargo, debido a que operaremos en precisión doble entonces no haremos esta suposición:
+$$\begin{align}
+	\bmt{a}_3 =&\ r_{13}\bmt{q}_1 + r_{23}\bmt{q}_2 + r_{33}\bmt{q}_3 \\
+	\bmt{a}_3 - r_{13}\bmt{q}_1 =&\ r_{23}\bmt{q}_2 + r_{33}\bmt{q}_3 \\
+	\bmt{q}_2^T(\bmt{a}_3 - r_{13}\bmt{q}_1) =&\ r_{23}\bmt{q}_2^T\bmt{q}_2 + r_{33}\bmt{q}_2^T\bmt{q}_3 \\
+	=&\ r_{23}\underbrace{\bmt{q}_2^T\bmt{q}_2}_1 + r_{33}\underbrace{\bmt{q}_2^T\bmt{q}_3}_0 \\
+	=&\ r_{23}
+\end{align}$$
+por lo que esta vez obtenemos $r_{23} = \bmt{q}_2^T(\bmt{a}_3 - r_{13}\bmt{q}_1)$, lo que es matemáticamente equivalente al resultado de $r_{23}$ obtenido anteriormente, pero computacionalmente es muy importante, esto es debido a que al considerar $r_{13}\bmt{q}_1$ en $(\bmt{a}_3 - r_{13}\bmt{q}_1)$ y luego multiplicar por la izquierda el valor $\bmt{q}_2^T$, el coeficiente $r_{23}$ y posteriormente el coeficiente $r_{33}$ y vector $\bmt{q}_3$ van capturando y corrigiendo la inexactitud de la computación.
+
+El nuevo algoritmo quedaría de la siguiente manera:
+
+```python
+for k in range(1, n):
+	y = A[k]
+	for i in range(1, k):
+		r[i][k] = Transpose(Q[i]) * A[k]
+		y = y - R[i][k] * y		
+	R[k][k] = Norm_2(y)
+	Q[k] = y / R[k][k]
+```
