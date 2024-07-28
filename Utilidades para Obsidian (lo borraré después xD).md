@@ -1,6 +1,9 @@
 $$
 \newcommand{\bm}[1]{\boldsymbol{#1}}
 \newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
 $$
 $$\bm{x} = \begin{bmatrix} r_x & r_y \end{bmatrix}$$Matriz vertical:
 $$\begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \\ \end{bmatrix}$$Matriz horizontal:
