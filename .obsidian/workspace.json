@@ -14,20 +14,20 @@
               "type": "pdf",
               "state": {
                 "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-                "page": 5,
+                "page": 170,
                 "left": -11,
-                "top": 707,
+                "top": 630,
                 "zoom": 1.3970588235294117
               }
             }
           },
           {
-            "id": "42a2958d72a3661f",
+            "id": "431cccaf0e79ca36",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Unidad 3/9- GMRes.md",
+                "file": "Unidad 3/10- Integración Numérica.md",
                 "mode": "source",
                 "source": false
               }
@@ -53,8 +53,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -120,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unidad 3/9- GMRes.md",
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unidad 3/9- GMRes.md",
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -168,7 +167,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unidad 3/9- GMRes.md"
+                "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf"
               }
             }
           }
@@ -195,9 +194,11 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "42a2958d72a3661f",
+  "active": "b1cbc01e1f21aad3",
   "lastOpenFiles": [
+    "Unidad 3/10- Integración Numérica.md",
     "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+    "Material del Curso/s14_integracion.pdf",
     "Unidad 3/9- GMRes.md",
     "Unidad 2/8- Mínimos Cuadrados.md",
     "Material del Curso/s13_GMRes.pdf",
@@ -226,7 +227,6 @@
     "Imágenes/Grafico_3.png",
     "Material del Curso/s07_sel.pdf",
     "Código Útil/Diagrama de Cobweb.py",
-    "Material del Curso/s05_raices1D_2.pdf",
     "Imágenes/Ecuacion_1.png",
     "Imágenes/CobWeb_2.png",
     "Imágenes/Cobeb_2.png",

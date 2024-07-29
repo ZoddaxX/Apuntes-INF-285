@@ -267,7 +267,7 @@ Para fines de mejorar la comprensión de esta estructura de factorización, se i
 $$||QA||_2 = ||A||_2,\ ||QA||_F = ||A||_F$$
   El cual nos indica que el producto por una matriz unitaria no afecta a la [[|norma 2 matricial]] ni la [[|norma de Frobenious]] de la matriz resultante. Es gracias a este teorema que podemos utilizar en esta sección la siguiente implicancia:
   $$||Q\bm{\text{x}}||_2 = ||\bm{\text{x}}||_2,$$
-  el cual nos dice que las matrices unitarias no cambian la [[|norma 2 vectorial]].
+  lo que implica que las matrices unitarias no cambian la [[|norma 2 vectorial]].
 
 - *Para cualquier matriz $Q \in \mathbb{C}^{n \times n}$ unitaria se tiene que $|\lambda| = 1$, donde $\lambda$ es un* [[|valor propio]] *de $Q$* 
 
