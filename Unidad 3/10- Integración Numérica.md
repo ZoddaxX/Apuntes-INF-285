@@ -155,7 +155,7 @@ En la siguiente imagen adjunta pueden observar algunos de los valores obtenidos 
 
 La gran ventaja de este algoritmo es que nos permite integrar de manera perfecta todos los polinomios que sean de grado $2n - 1$ o menor. El algoritmo visualmente se puede observar de la siguiente manera:
 
-![[Pasted image 20240730230833.png]]
+![[Apuntes_INF-285_2024-v0613.pdf#page=179&rect=79,460,533,712|Apuntes_INF-285_2024-v0613, p.178]]
 
 Y su algoritmo corresponde al siguiente:
 
