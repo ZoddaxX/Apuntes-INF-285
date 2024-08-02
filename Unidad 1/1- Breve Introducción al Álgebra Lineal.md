@@ -394,7 +394,7 @@ $$I =
 \end{bmatrix}$$
 
 ### Matriz Diagonal
-Una matriz diagonal es una matriz que solo contiene elementos no nulos en su diagonal. Por lo general suelen ser denotadas como $D$:
+Una matriz diagonal es una matriz cuadrada que solo contiene elementos no nulos en su diagonal. Por lo general suelen ser denotadas como $D$:
 $$D = 
 \begin{bmatrix}
 d_1    & 0      & \cdots & 0      \\

@@ -138,3 +138,125 @@ def backwardEulerMethod(t0 ,T, N, y0, f):
 ```
 
 ## RK2: Runge-Kutta de Segundo Orden 
+
+Anteriormente les había mencionado que solamente parecía posible despejar el valor de $y(t_1)$ de la [[11- Ecuaciones Diferenciales Ordinarias#^67c7d8|ecuación 1]], y habíamos notado que solamente era posible usar [[10- Integración Numérica#Suma de Riemann|sumas de Riemann]] para poder despejarlo, o al menos eso es así si es que no trabajamos más con la ecuación. RK2 usa específicamente el [[10- Integración Numérica#Regla del Punto Medio|método del punto medio]] para poder hacer el despeje, y a continuación les explicaré como es que lo logra. 
+
+Aproximando el valor de $y(t_1)$ con el del método del punto medio obtenemos:
+$$y(t_1) = y_0 + \int_0^{t_1} f(s, y(s)) \, ds \tag{1} \approx y_0 + f(\frac{t_1}{2}, y\frac{t_1}{2})(t_1-0)$$
+donde anteriormente habíamos visto que esto no era una solución factible debido a que $y(\frac{t_1}{2})$  todavía sigue siendo un valor que desconocemos, por lo tanto, nosotros podemos estimar este valor con el [[11- Ecuaciones Diferenciales Ordinarias#Método de Euler|método de Euler]], de esta forma nosotros obtendremos $k = y_0 + \frac{t_1}{2}f(0, y_0)$, por lo que obtendremos el siguiente algoritmo para el método de Runge-Kutta de Segundo Orden:
+$$\begin{aligned}
+	k_1 &= f(t_i,y_i) \\
+	y_{i+1} &= y_i + hf\left( t_i + \frac{h}{2}, y_i + \frac{h}{2}k_1 \right)
+\end{aligned}$$
+Lo que se traduce en el siguiente código de Python:
+
+```python
+def RK2(t0, T, N, y0, f): 
+	t = np.linspace(t0, T, N+1) 
+	h = (T − t0) / N 
+	y = np.zeros(N+1) 
+	y[0] = y0 
+	for i in np.arange(N): 
+		k1 = f(t[i],y[i]) 
+		y[i+1] = y[i] + f(t[i] + h/2, y[i] + k1 * h/2) * h 
+	return t, y
+```
+
+Se lo que mas de uno estará pensando, como estamos calculando una aproximación numérica usando otro algoritmo de aproximación entonces, ¿no tendremos un error mayor de lo normal? y la realidad es que no, y de hecho, esto en parte va a nuestro favor. Resulta que este algoritmo es un método de orden 2, es decir, su error es de $\mathcal{O}(h^2)$, lo que significa que si reducimos $h$ por la mitad entonces el error se terminaría reduciendo 4 veces, por lo que podríamos llegar a una misma aproximación numérica sin usar un $h$ tan pequeño, aparte de que llegaríamos al resultado deseado en un menor tiempo de computación.
+
+## RK4: Runge-Kutta de Cuarto Orden
+
+Este algoritmo es el siguiente:
+$$\begin{aligned}
+	k_1 &= f(t_i, y_i) \\
+	k_2 &= f\left( t_i + \frac{h}{2}, y_i + \frac{h}{2}k_1 \right) \\
+	k_3 &= f\left( t_i + \frac{h}{2}, y_i + \frac{h}{2}k_2 \right) \\
+	k_4 &= f(t_i + h, y_i + hk_3) \\
+	y_{i+1} &= y_i + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{aligned}$$
+(No me miren así, ni en el ppt ni en los apuntes oficiales sale la explicación de como se formó este algoritmo >:\[ ) El código del algoritmo es el siguiente:
+
+```python
+def RK4(t0, T, N, y0, f): 
+	t = np.linspace(t0, T, N+1) 
+	h = (T − t0) / N 
+	y = np.zeros(N+1) 
+	y[0] = y0 
+	for i in np.arange(N): 
+		k1 = f(t[i],y[i]) 
+		k2 = f(t[i] + h/2, y[i] + k1 * h/2)
+		k3 = f(t[i] + h/2, y[i] + k2 * h/2)
+		k4 = f(t[i] + h, y[i] + k3 * h)
+		y[i+1] = y[i] + (k1 + 2*k2 + 2*k3 + k4) * h/6 
+	return t, y
+```
+
+Con una explicación muy parecida a la de segundo orden, este algoritmo al ser de cuarto orden posee un error de $\mathcal{O}(h^4)$, por lo que si llegamos a reducir su $h$ por la mitad entonces estamos reduciendo su error unas 16 veces.
+
+## Sistemas Dinámicos
+
+Los sistemas dinámicos pueden interpretarse como una extensión de los IVP. Por ejemplo, consideremos el siguiente problema de valor inicial o IVP en 2 variables:
+$$\begin{aligned}
+	\dot{x} &= f_1(t, x, y) \\
+	\dot{y} &= f_2(t, x, y) \\
+	x(0) &= x_0 \\
+	y(0) &= y_0
+\end{aligned}$$
+donde tanto $x(t)$ como $y(t)$ son funciones temporales (dependen del tiempo) y $f_1$ con $f_2$ son funciones de 3 variables. Para que nosotros seamos capaces de aplicar la teoría que hemos aprendido hasta ahora en este tema, es necesario reescribir el problema a su forma vectorial:
+$$\begin{aligned}
+	\dot{\bmf{y}} &= \bmf{F}(t, \bmf{y}) \\
+	\bmf{y}(0) &= \bmf{y}_0
+\end{aligned}$$
+donde para este caso $\bmf{y}(t) = \left<x(t), y(t)\right>^T$, $\bmf{F}(t) = \left< f_1(t,\bmf{y}), f_2(t,\bmf{y})\right>^T$ y $\bmf{y}(0) = \left< x_0, y_0 \right>^T$. Entonces acabamos de crear un IVP vectorial el cual vamos a llamar Sistema Dinámico. 
+
+Por completitud les presento el paso a paso de las versiones vectoriales de los algoritmos vistos anteriormente: ^7323b4
+
+- **Método de Euler**:
+$$\bmf{y}_{i+1} = \bmf{y}_i + \bmf{F}(t_i, \bmf{y}_i)h$$
+- **Backward Euler** (recuerden que "findRoot" corresponde al algoritmo que uno decide usar para encontrar la raíz de $\bmf{y}_{i+1}$):
+$$\begin{aligned}
+	\bmf{G}(\bmf{x}) &= \bmf{x} - \bmf{y}_i - \bmf{F}(t_i, \bmf{x})h \\
+	\bmf{y}_{i+1} &= \text{findRoot}(\bmf{G}(\bmf{x}), \bmf{y}_i)
+\end{aligned}$$
+- **RK2**:
+$$\begin{aligned}
+	\bmf{k}_1 &= \bmf{F}(t_i, \bmf{y}_i) \\
+	\bmf{y}_{i+1} &= \bmf{y}_i + h\bmf{F}(t_i + \frac{h}{2}, \bmf{y}_i + \frac{h}{2}\bmf{k}_1)
+\end{aligned}$$
+- RK4:
+$$\begin{aligned}
+	\bmf{k}_1 &= \bmf{F}(t_i, \bmf{y}_i) \\
+	\bmf{k}_2 &= \bmf{F}(t_i + \frac{h}{2}, \bmf{y}_i + \frac{h}{2}\bmf{k}_1) \\
+	\bmf{k}_3 &= \bmf{F}(t_i + \frac{h}{2}, \bmf{y}_i + \frac{h}{2}\bmf{k}_2) \\
+	\bmf{k}_4 &= \bmf{F}(t_i + h, y_i + hk_3) \\
+	\bmf{y}_{i+1} &= \bmf{y}_i + \frac{h}{6}(\bmf{k}_1 + 2\bmf{k}_2 + 2\bmf{k}_3 + \bmf{k}_4)
+\end{aligned}$$
+
+Cabe destacar que estos sistemas funcionan para una cantidad indeterminada de dimensiones, o sea, pueden formarse Sistemas Dinámicos de $N$ dimensiones.
+
+Para dar un ejemplo de Sistema Dinámico, tomemos un problema que nos va a devolver a los cursos de Física (buuuuuuuuu). Consideremos que tenemos un péndulo simple con pivote en un punto $\bmf{P}$ y con una barra rígida de largo $l$ con masa despreciable en comparación a la partícula de masa $m$ en el extremo opuesto al pivote. Considerando la segunda Ley de Newton obtenemos la siguiente ecuación del ángulo $\theta$ formado entre la vertical bajo el pivote y la barra rígida:
+$$\begin{align}
+	ml\ddot{\theta} &= -mg\sin(\theta) \tag{2} \\
+	\theta(0) &= \theta_0 \\
+	\dot{\theta}(0) &= \omega_0
+\end{align}$$
+donde $g$ corresponde a la aceleración de gravedad, $\theta_0$ es el ángulo inicial y $\omega_0$ es la velocidad angular inicial. Intentemos reescribir la ecuación 2 tratando de despejar $\ddot{\theta}$:
+
+$$\ddot{\theta} = \frac{g}{l}\sin(\theta) \tag{3}$$ ^207df0
+
+Esta ecuación todavía no posee la misma estructura de una IVP que necesitamos para empezar a ejecutar algún algoritmo visto en el curso, ni mucho menos el de un Sistema Dinámico, por lo tanto necesitamos re-rescribir nuestro sistema de ecuaciones. Hagamos el siguiente cambio de variable:
+$$\begin{aligned}
+	y_1(t) = \theta(t) \\
+	y_2(t) = \dot{\theta}(t) \\
+\end{aligned}$$
+Derivando las ecuaciones con respecto a $t$ obtenemos:
+$$\begin{aligned}
+	\dot{y}_1(t) = \dot{\theta}(t) \\
+	\dot{y}_2(t) = \ddot{\theta}(t) \\
+\end{aligned}$$
+donde si nos fijamos bien, el lado derecho de la primera ecuación posee la misma forma de la función $y_2(t)$ y la segunda ecuación corresponde a la misma expresión de la [[11- Ecuaciones Diferenciales Ordinarias#^207df0|ecuación 3]]. Realizando estos reemplazos en nuestro sistema de ecuaciones dejando todo en función de las variables $y_1(t)$ y $y_2(t)$ además de eliminar la dependencia de $t$ por mera simplicidad (o sea, esto último no es necesario hacerlo), nuestro sistema de ecuaciones queda de la siguiente forma:
+$$\begin{aligned}
+	\dot{y}_1 &= y_2 \\
+	\dot{y}_2 &= -\frac{g}{l}\sin(y_1)
+\end{aligned}$$
+El cual ahora si que si posee la forma de un Sistema Dinámico, donde $\bmf{y} = \left< y_1(t), y_2(t) \right>^T$ y $\bmf{F}(t,\bmf{y}) = \left< \bmf{y}_2, -\frac{g}{l}\sin(\bmf{y}_1) \right>^T$, por lo que ahora basta con aplicar alguna de las [[11- Ecuaciones Diferenciales Ordinarias#^7323b4|formas matriciales]] de algoritmo que hemos visto en este tema para obtener las distintas posiciones del péndulo para algún segmento de tiempo $t$ dado. 
