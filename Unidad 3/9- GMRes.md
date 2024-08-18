@@ -1,4 +1,10 @@
-
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 El algoritmo de GRM se unen junto a los ya vistos en el [[5- Sistemas de Ecuaciones Lineales|tema 5]] para poder resolver sistemas de ecuaciones lineales cuadrados de la forma $A\bm{\text{x}} = \bmt{b}$, el cual funciona de forma iterativa y además es capaz de llegar a la respuesta única de un sistema de ecuaciones de dimensiones $n \times n$ en a lo mucho $n$ iteraciones con una precisión perfecta (mientras no se vea restringida por la precisión usada, claro...).
 
 Antes de poder revisar los detalles sobre este tipo de algoritmo, es necesario revisar el siguiente teorema de Cayley-Hamilton: *Una matriz de dimensiones $n \times n$ es aniquilada (D:) por su polinomio característico $p(\lambda) = det(\lambda I - A)$, el cual es mónico de grado $n$*. 
@@ -26,7 +32,7 @@ $$\begin{align}
 	=&\ \frac{(-1)^{n-1}}{det(A)}(A^{n-1}\mathbf{b} + \check{c}_{n-1}A^{n-2}\mathbf{b} + \cdots + \check{c}_1\mathbf{b})\\
 	\bmt{x} =&\ \sum_{i=1}^{n}\mathring{c}_iA^{i-1}\mathbf{b}
 \end{align}$$
-Esta expresión nos demuestra que es posible representar la solución de un sistema de ecuaciones lineales mediante una combinación lineal de los vectores $\mathbf{b}, A\mathbf{b}, A^2\mathbf{b}, \cdots, A^{n-1}\mathbf{b}$. Cabe destacar además que el carácter $\mathring{c}$ además de incluir los valores $\check{c}_i$ del polinomio característico, también contiene al valor de $\frac{(-1)^{n-1}}{det(A)}$. Cabe destacar además que se está considerando que la matriz $A$ no es una [[|matriz singular]], por lo que $A^0 = I$. Supongamos ahora que queremos tomar los primeros $k$ vectores del conjunto de vectores $\mathbf{b}, A\mathbf{b}, A^2\mathbf{b}, \cdots, A^{n-1}\mathbf{b}$, el subespacio vectorial generado por ese conjunto es el siguiente:
+Esta expresión nos demuestra que es posible representar la solución de un sistema de ecuaciones lineales mediante una combinación lineal de los vectores $\mathbf{b}, A\mathbf{b}, A^2\mathbf{b}, \cdots, A^{n-1}\mathbf{b}$. Cabe destacar además que el carácter $\mathring{c}$ además de incluir los valores $\check{c}_i$ del polinomio característico, también contiene al valor de $\frac{(-1)^{n-1}}{det(A)}$. Cabe destacar además que se está considerando que la matriz $A$ no es una [[1- Breve Introducción al Álgebra Lineal#Matriz Singular|matriz singular]], por lo que $A^0 = I$. Supongamos ahora que queremos tomar los primeros $k$ vectores del conjunto de vectores $\mathbf{b}, A\mathbf{b}, A^2\mathbf{b}, \cdots, A^{n-1}\mathbf{b}$, el subespacio vectorial generado por ese conjunto es el siguiente:
 $$\mathcal{K}_k = \text{span}(\mathbf{b}, A\mathbf{b}, A^2\mathbf{b}, \cdots, A^{k-1}\mathbf{b})$$
 donde $\mathcal{K}_k$ se le conoce como el sub-espacio de Krylov. Con esto puedo introducirles los GMRes como un algoritmo que busca una aproximación de $\bmt{x}$ restringiéndolo al sub-espacio de Krylov y resolviendo un problema de cuadrados equivalente.
 
@@ -86,7 +92,7 @@ $$\begin{align}
 
 ^fb9b2a
 
-donde por conveniencia vamos a considerar que todos los $\bmf{q}_i$ son ortonormales, es decir, poseen una [[|norma-2]] equivalente a 1 y son ortogonales entre sí. ¿Norma-2 de 1?¿Vectores ortogonales entre sí? Así es, estoy hablando del método de [[8- Mínimos Cuadrados#Ortonormalización de Gram-Schmidt|Ortonormalización de Gram-Schmid]], aunque para este caso hay que modificarla un poco...
+donde por conveniencia vamos a considerar que todos los $\bmf{q}_i$ son ortonormales, es decir, poseen una [[1- Breve Introducción al Álgebra Lineal#Norma|norma-2]] equivalente a 1 y son ortogonales entre sí. ¿Norma-2 igual 1?¿Vectores ortogonales entre sí? Así es, estoy hablando del método de [[8- Mínimos Cuadrados#Ortonormalización de Gram-Schmidt|Ortonormalización de Gram-Schmid]], aunque para este caso hay que modificarla un poco...
 
 >[!info] Iteración de Arnoldi
 >La modificación del método de Ortonormalización de Gram-Schmid para funcionar con GMRes es llamada la iteración de Arnoldi.

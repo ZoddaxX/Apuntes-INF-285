@@ -2,7 +2,13 @@
 cssclasses:
   - t-c
 ---
-
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 Como podrán interpretar del título de este tema, ahora nos vamos a enfocar en algoritmos que nos permitan resolver sistemas de ecuaciones lineales, solo que a diferencia de los temas de [[3- Raíces en 1D (Parte 1)|raíces en 1D]], ahora vamos a prestar especial atención a las características técnicas de las técnicas que se enseñaran. Por ejemplo, la calidad de la solución (cuanto error produce), su tiempo de computación y la cantidad de almacenamiento requerido (cuanta RAM se necesita para computarlo).
 
 Como recordarán, en el [[4- Raíces en 1D (Parte 2)#^446a3c|tema anterior]] mencioné que buscar la raíz de una función podía interpretarse como la búsqueda de la intersección entre una función lineal y la función a la que queremos encontrar su raíz. Al resolver sistemas de ecuaciones lineales en el fondo vamos a hacer los mismo, solo que esta vez buscaremos la intersección entre todas las rectas con sus ecuaciones representativas pertenecientes a un mismo sistema de ecuaciones: 

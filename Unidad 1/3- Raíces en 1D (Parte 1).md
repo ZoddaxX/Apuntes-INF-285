@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 En esta sección estudiaremos diversos algoritmos para poder descubrir las raíces de funciones que sean de 1D, es decir, vamos a buscar para funciones de la forma $f(x):\mathbb{R}\rightarrow\mathbb{R}$ cierto valores raíces que denotaremos como $r$ que posee un dominio en $\mathbb{R}$ tal que $f(r)=0$. ^a184d7
 
 Con el fin de poder determinar cual de los algoritmos que se van a estudiar es el más adecuado, es necesario analizar ciertos puntos de lo anteriormente mencionado.

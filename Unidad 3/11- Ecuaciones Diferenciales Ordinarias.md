@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 En todos los problemas que hemos estudiado hasta el momento, ya sea Raíces en 1D, Sistemas de Ecuaciones y Mínimos Cuadrados siempre hemos considerado que la incógnita es una variable $x$, o bien la mayoría de veces un vector $\bmf{x}$ con varias incógnitas. Ahora vamos a considerar que nuestra incógnita por despejar es una función $y(t)$ o $y(x)$ dependiendo de si se trata de una variable temporal o espacial respectivamente.
 
 Cuando nuestro problema dependa de una variable temporal, es decir, buscamos una función $y(t)$, entonces estamos hablando de un *Problema de Valor Inicial*, o IVP del inglés *Initial Value Problem*, y si depende de una variable temporal, es decir, buscamos una función $y(x)$, entonces estamos ante un *Problema de Valor de Frontera*, o BVP del inglés *Boundary Value Problem*.
@@ -162,7 +169,7 @@ def RK2(t0, T, N, y0, f):
 	return t, y
 ```
 
-Se lo que mas de uno estará pensando, como estamos calculando una aproximación numérica usando otro algoritmo de aproximación entonces, ¿no tendremos un error mayor de lo normal? y la realidad es que no, y de hecho, esto en parte va a nuestro favor. Resulta que este algoritmo es un método de orden 2, es decir, su error es de $\mathcal{O}(h^2)$, lo que significa que si reducimos $h$ por la mitad entonces el error se terminaría reduciendo 4 veces, por lo que podríamos llegar a una misma aproximación numérica sin usar un $h$ tan pequeño, aparte de que llegaríamos al resultado deseado en un menor tiempo de computación.
+Se lo que mas de uno estará pensando, debido a que estamos calculando una aproximación numérica usando otro algoritmo de aproximación entonces, ¿no tendremos un error mayor de lo normal? y la realidad es que no, y de hecho, esto en parte va a nuestro favor. Resulta que este algoritmo es un método de orden 2, es decir, su error es de $\mathcal{O}(h^2)$, lo que significa que si reducimos $h$ por la mitad entonces el error se terminaría reduciendo 4 veces, por lo que podríamos llegar a una misma aproximación numérica sin usar un $h$ tan pequeño, aparte de que llegaríamos al resultado deseado en un menor tiempo de computación.
 
 ## RK4: Runge-Kutta de Cuarto Orden
 

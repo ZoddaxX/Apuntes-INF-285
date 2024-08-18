@@ -2,7 +2,13 @@
 cssclasses:
   - t-c
 ---
-
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 ## Método o Iteración de Punto Fijo
 
 Este método es uno de los más directos y a la vez versátiles a la hora de encontrar **puntos fijos** para una función (no confundir con una [[3- Raíces en 1D (Parte 1)#^a184d7|raíz]]), los cuales podremos usar para encontrar efectivamente las raíces que uno necesita obtener.

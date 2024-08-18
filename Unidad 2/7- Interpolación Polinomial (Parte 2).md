@@ -1,4 +1,10 @@
-
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 ## Error de Interpolación y Fenómeno de Runge
 
 A continuación se presenta el siguiente teorema que explica un concepto importante para este tema, el **Teorema de Error de Interpolación**: *Asuma que $p(x)$ es el polinomio interpolador (de grado $n-1$ o menor) que ajusta $n$ puntos ($x_1$, $y_1$)$,\cdots,$($x_n$, $y_n$). El error de interpolación viene dado por:*

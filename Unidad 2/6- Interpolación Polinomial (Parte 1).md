@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 En esta sección estudiaremos diversos algoritmos que nos permitan realizar interpolaciones polinomiales sobre ciertos puntos en 1D. 
 Definiendo formalmente el concepto de interpolación polinomial tenemos: *Una función $y = p(x)$ interpola los datos ($x_1$, $y_1$)$,\cdots,$($x_n$, $y_n$) si $p(x_i) = y_i$ para cada $i \in \{1,2,\cdots,n\}$*.
 
@@ -80,7 +87,7 @@ $$\underbrace{
 	y_{n-1} \\
 	y_n 
 \end{bmatrix}$$
-Notemos que no importan el orden en el que se encuentren cada uno de los valores $x_i$, sin embargo, si queremos obtener una solución única al problema es importante que todas las filas sean [[|linealmente independientes]] entre si, ya que de lo contrario existirían 2 o más filas iguales dentro de nuestra matriz, por lo que de existir alguna solución al sistema de ecuaciones esta no seria única, y es más, esto lo podemos corroborar con la definición de [[1- Breve Introducción al Álgebra Lineal#Determinante|determinante]], ya que nosotros terminaríamos obteniendo un determinante equivalente a 0. Como último punto a mencionar, esta matriz puede terminar requiriendo demasiadas operaciones elementales para poder resolverla, ya que crece de forma exponencial la cantidad de operaciones que hay que realizar a medida que se necesitan interpolar más puntos.
+Notemos que no importan el orden en el que se encuentren cada uno de los valores $x_i$, sin embargo, si queremos obtener una solución única al problema es importante que todas las filas sean [[1- Breve Introducción al Álgebra Lineal#Dependencia e Independencia Lineal|linealmente independientes]] entre si, ya que de lo contrario existirían 2 o más filas iguales dentro de nuestra matriz, por lo que de existir alguna solución al sistema de ecuaciones esta no seria única, y es más, esto lo podemos corroborar con la definición de [[1- Breve Introducción al Álgebra Lineal#Determinante|determinante]], ya que nosotros terminaríamos obteniendo un determinante equivalente a 0. Como último punto a mencionar, esta matriz puede terminar requiriendo demasiadas operaciones elementales para poder resolverla, ya que crece de forma exponencial la cantidad de operaciones que hay que realizar a medida que se necesitan interpolar más puntos.
 
 ## Interpolación de Lagrange
 

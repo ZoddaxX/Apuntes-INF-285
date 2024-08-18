@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 Un correcto entendimiento del álgebra nos permitirá entender de forma matemática la aplicación correcta de diversos algoritmos que se verán a lo largo del curso en diferentes contextos que los requieran.
 Las estructuras básicas con las que se trabaja en el álgebra son los vectores y matrices. Un vector columna posee la siguiente forma:
 $$\bm{u} = \begin{bmatrix} u_{1} \\ \vdots \\ u_{n} \\ \end{bmatrix} \in \mathbb{R}^n$$El cual puede transformarse a un vector fila ocupando la operación traspuesta $^T$, es decir, $\bm{u}^T=\begin{bmatrix} a_{1}, & \cdots &, a_{n}\end{bmatrix}$. Es muy importante entender en qué momento usar qué tipo de vector al realizar operaciones matemáticas, ya que muchas veces se buscan expresiones que sean compatibles teóricamente hablando, por ejemplo, cuando se busca el producto interno entre 2 vectores $\bm{u}$ y $\bm{v}$ es necesario que ambos posean las mismas dimensiones, por ende ambos tienen que ser o bien vectores fila o vectores columna que pertenezcan al mismo $\mathbb{R}^n$ (en caso contrario, tendríamos que considerar realizar una transposición al alguno de los vectores si es que pertenecen al mismo $\mathbb{R}^n$).
@@ -209,7 +216,8 @@ $$ \begin{align}
 a * 1 + b * 0 &= 4 \\ 
 a * 0 + b * 1 &= 3 
 \end{align} $$
-Es fácil notar que las soluciones corresponden a $a = 4$  y $b = 3$, por lo que el cambio de base de nuestro vector objetivo en función de la base canónica del espacio vectorial en el que estamos es:  $$\left\{
+Es fácil notar que las soluciones corresponden a $a = 4$  y $b = 3$, por lo que el cambio de base de nuestro vector objetivo en función de la base canónica del espacio vectorial en el que estamos es: 
+$$\left\{
 	a 
 	\begin{bmatrix}
 		1 \\
@@ -228,7 +236,8 @@ Es fácil notar que las soluciones corresponden a $a = 4$  y $b = 3$, por lo que
 	4\\
 	3
 \end{bmatrix}
-$$Como podrán haber intuido en este punto, las líneas verdes y azul corresponden a cambios de base diferentes a la base canónica, y para poder obtenerlas podemos generalizar las bases a utilizar de esta forma:
+$$
+Como podrán haber intuido en este punto, las líneas verdes y azul corresponden a cambios de base diferentes a la base canónica, y para poder obtenerlas podemos generalizar las bases a utilizar de esta forma:
 $$\bm{u} = 
 \begin{bmatrix}
 u_1 \\
@@ -308,12 +317,26 @@ Donde $Z$ correspondería a la inversa de $A$.
 ### Determinante
 El determinante corresponde a un escalar obtenible de una matriz $A \in \mathbb{R}^{n \times n}$ (es decir, tiene que ser una matriz cuadrada) la cual se puede calcular de la siguiente forma:
 $$\text{det}(A) = \sum_{j\ =\ 1}^{n} (-1)^{i+j}A_{i,j}\text{det}(A_{|i|,|j|})$$
-La cual cumple con las siguientes propiedades:
+Donde $A_{|i|,|j|}$ corresponde a la matriz A sin las filas $i$ ni $j$. El determinante cumple con las siguientes propiedades:
 - $\text{det}(A^{-1}) = \frac{1}{\text{det}(A)}$.
 - $\text{det}(AB) = \text{det}(A)\text{det}(B)$ donde $B \in \mathbb{R}^{n \times n}$.
 - $\text{det}(\alpha A) = \alpha^n \text{det}(A)$, donde $\alpha$ corresponde a un escalar.
 - $\text{det}(A^T) = \text{det}(A)$, donde $^T$ es el operador transpuesta.
 - $\text{det}(A) = \prod_{i = 1}^{n}\lambda_i$, donde $\lambda_i$ para $i \in \{1,2,\cdots,n\}$ son los valores propios de $A$.
+
+### Norma
+La norma corresponde a una función que le asigna a un vector o matriz un número positivo, el cual puede interpretarse como una medida de "tamaño" o "longitud" de ese objeto.
+
+Definimos a la norma de un vector $\bmf{v}$ como *norma euclidiana*, la cual se obtiene de la siguiente forma:
+$$||\bmf{v}|| = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}$$
+En el caso de las matrices, existen varios tipos de normas que se pueden utilizar. Podemos definir específicamente a la *p-norma* de una matriz $A \in \mathbb{R}^{m \times n}$ de la siguiente forma:
+$$l_p = ||A||_p = \left( \sum_{i=1}^m \sum_{j=1}^n|A_{ij}|^p\right)^{\frac{1}{p}},\ 1 \leq p \leq \infty$$
+De esta formulación podemos destacar 2 normas generalmente utilizadas:
+
+<u>Norma-2 o Norma de Frobenius</u>: Esta viene dada para el valor de $p = 2$, y está expresada como:
+$$l_2 = ||A||_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n|A_{ij}|^2}$$
+<u>Norma-Infinita</u>: Este peculiar tipo de norma corresponde a la siguiente definición:
+$$l_\infty = ||A||_\infty = \max_{i=1}^n|x_i|$$
 
 ### Operaciones Fila
 Las operaciones Fila corresponden a ciertas operaciones que una matriz puede realizar sobre si misma, transformando las filas de esta misma de modo que quede una nueva matriz que si bien está expresada de forma distinta, sigue siendo equivalente a la original. Por ejemplo, tomemos el siguiente sistema de ecuaciones:
@@ -336,13 +359,13 @@ A la matriz de la izquierda ($A$) podemos aplicarle las siguientes operaciones f
 - $\lambda R_j \rightarrow R_j$, la cual multiplica a la fila $j$ de la matriz el valor del escalar $\lambda$. Por ejemplo, si realizamos sobre la matriz $A$:
 $$A = 
 \begin{bmatrix}
-1 & 0 \\
-1 & 3
+	1 & 0 \\
+	1 & 3
 \end{bmatrix}
-- 2R_2 \rightarrow R_2 ∼
+∼2R_2 \rightarrow R_2 ∼
 \begin{bmatrix}
-1 & 0 \\
-2 & 6
+	1 & 0 \\
+	2 & 6
 \end{bmatrix}
 $$
 - $R_i \leftrightarrow R_j$ , la cual intercambia las filas $i$ y $j$ de nuestra matriz. Usando como ejemplo la matriz $A$:
@@ -351,7 +374,7 @@ $$A =
 1 & 0 \\
 1 & 3
 \end{bmatrix}
-- R_1 \rightarrow R_2 ∼
+∼ R_1 \rightarrow R_2 ∼
 \begin{bmatrix}
 1 & 3 \\
 1 & 0
@@ -362,7 +385,7 @@ $$A =
 1 & 0 \\
 1 & 3
 \end{bmatrix}
-- R_2 + (-1)R_1 \rightarrow R_2 ∼
+∼ R_2 + (-1)R_1 \rightarrow R_2 ∼
 \begin{bmatrix}
 1 & 0 \\
 0 & 3
@@ -374,12 +397,49 @@ $$A|c =
 1 & 0 & 1 \\ 
 1 & 3 & 4 \\ 
 \end{array} \right] 
-- R_2 + (-1)R_1 \rightarrow R_2 ∼
+∼ R_2 + (-1)R_1 \rightarrow R_2 ∼
 \left[ \begin{array}{cc|c} 
 1 & 0 & 1 \\ 
 0 & 3 & 3 \\ 
 \end{array} \right] $$
 Donde nótese además que gracias a esta última operación fila logramos resolver el sistema de ecuaciones anterior!
+
+### Dependencia e Independencia Lineal
+Se dice que un conjunto de vectores son linealmente dependientes entre sí si es que existe alguno de estos vectores pueden ser escritos como una combinación lineal de los demás. Por ejemplo, tomemos la siguiente matriz:
+$$\begin{bmatrix}
+	2 & 5 & 9 \\
+	0 & 1 & 3 \\
+	1 & 2 & 3
+\end{bmatrix}$$
+en este caso el vector fila ubicado en la parte posterior de nuestra matriz puede ser escrita con la siguiente combinación lineal de los otros 2 vectores de la matriz:
+$$(2,5,9) = \alpha(0,1,3) + \beta(1,2,3);\ \alpha = 1,\ \beta = 2$$
+Esto último implica que los 3 vectores fila que conforman la matriz anterior son linealmente dependientes entre sí. Nótese además que esto va a ser cierto dentro de una matriz si y solo si sus vectores columna también son linealmente dependientes entre sí. Por ejemplo, el vector columna ubicada más a la derecha de la matriz puede ser escrita por la siguiente combinación lineal de los otros 2 vectores columna:
+$$\left(
+	\begin{array}{c}
+		9 \\
+		3 \\
+		3
+	\end{array}
+\right)
+= \alpha
+\left(
+	\begin{array}{c}
+		2 \\
+		0 \\
+		1
+	\end{array}
+\right)
++ \beta
+\left(
+	\begin{array}{c}
+		5 \\
+		1 \\
+		2
+	\end{array}
+\right);\
+\alpha = -3,\ \beta = 3
+$$
+En el caso contrario de que no sea posible escribir alguno de los vectores como una combinación lineal de los demás, entonces se dice que estos vectores son linealmente independientes entre sí.
 
 ## Matrices Particulares
 ### Matriz Identidad
@@ -425,3 +485,6 @@ u_{n1} & u_{n2} & \cdots & u_{n, n-1}  & u_{nn}
 \end{bmatrix}$$
 
 Cabe destacar que esta estructura no inhabilita que alguno de los coeficientes $u_{i,j}$ de estas 2 matrices sean 0. 
+
+### Matriz Singular
+Una matriz singular o degenerada corresponde a toda matriz $S \in \mathbb{R}^{n \times n}$ tal que su [[#Determinante]] sea igual a 0, es decir, no posee inversa.

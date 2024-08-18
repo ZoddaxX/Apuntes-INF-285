@@ -14,41 +14,21 @@
               "type": "pdf",
               "state": {
                 "file": "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-                "page": 10,
+                "page": 1,
                 "left": -11,
-                "top": 605,
-                "zoom": 1.397058823529412
+                "top": 768,
+                "zoom": 1.3970588235294117
               }
             }
           },
           {
-            "id": "87a2ec58b008bac0",
+            "id": "5aaa3bdb4f75248e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "f4c7a0f9b92f38bf",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "2cd7b0455f6ea280",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Utilidades para Obsidian (lo borraré después xD).md",
-                "mode": "source",
+                "file": "Reglas del Juego.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -120,7 +100,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+                "file": "Reglas del Juego.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -137,7 +117,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+                "file": "Reglas del Juego.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -168,7 +148,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unidad 1/1- Breve Introducción al Álgebra Lineal.md"
+                "file": "Reglas del Juego.md"
               }
             }
           }
@@ -195,27 +175,30 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "87a2ec58b008bac0",
+  "active": "5aaa3bdb4f75248e",
   "lastOpenFiles": [
     "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
+    "Reglas del Juego.md",
     "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+    "Unidad 3/9- GMRes.md",
+    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
+    "Código Útil/Diagrama de Cobweb.py",
+    "Unidad 3/12- Problemas de Valor de Frontera.md",
     "Unidad 3/11- Ecuaciones Diferenciales Ordinarias.md",
-    "Material del Curso/s15_ode_1.pdf",
-    "Unidad 2/5- Sistemas de Ecuaciones Lineales.md",
+    "Unidad 3/10- Integración Numérica.md",
+    "Unidad 2/8- Mínimos Cuadrados.md",
     "Unidad 2/7- Interpolación Polinomial (Parte 2).md",
     "Unidad 2/6- Interpolación Polinomial (Parte 1).md",
-    "Unidad 3/10- Integración Numérica.md",
-    "Unidad 3/9- GMRes.md",
-    "Unidad 2/8- Mínimos Cuadrados.md",
+    "Unidad 2/5- Sistemas de Ecuaciones Lineales.md",
     "Unidad 1/4- Raíces en 1D (Parte 2).md",
     "Unidad 1/3- Raíces en 1D (Parte 1).md",
     "Utilidades para Obsidian (lo borraré después xD).md",
-    "Reglas del Juego.md",
+    "Material del Curso/s02_estandar.pdf",
+    "Material del Curso/s15_ode_1.pdf",
     "Pasted image 20240730230833.png",
     "Material del Curso/s14_integracion.pdf",
     "Material del Curso/s13_GMRes.pdf",
     "Pasted image 20240729204245.png",
-    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
     "Material del Curso/s10_qr.pdf",
     "Unidad 3",
     "Pasted image 20240724222757.png",
@@ -226,11 +209,9 @@
     "[Scientific-Computing",
     "().md",
     "Imágenes/Grafico_4.png",
-    "Material del Curso/s08_interpol_1.pdf",
     "Imágenes/Grafico_2.png",
     "Imágenes/Grafico_1.png",
     "Imágenes/Grafico_3.png",
-    "Material del Curso/s07_sel.pdf",
     "Imágenes/Ecuacion_1.png",
     "Diagrama de Cobweb.md",
     "siguientes incisos.md",
@@ -240,7 +221,6 @@
     "Apuntes-INF-285/Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
     "Welcome.md",
     "create a link.md",
-    "[GitHub.md",
-    "[Numerical.md"
+    "[GitHub.md"
   ]
 }

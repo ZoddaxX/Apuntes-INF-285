@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 En este tema estudiaremos un tipo de problemas que no hemos abordado en este curso, y este corresponde a la resolución de sistemas de ecuaciones en las que existen más ecuaciones que incógnitas. La versión que resolveremos de este problema corresponde al de los mínimos cuadrados. A la hora de obtener los mínimos cuadrados de un sistema de ecuaciones vamos a aprender a realizar aproximaciones lineales sobre un conjunto de datos ($x_i$, $y_i$) para $i \in \{a,2,\cdots,n\}$. Antes de empezar con esto primero nos tenemos que hacer la pregunta, ¿Qué significa hacer una aproximación lineal?
 
 ![[Grafico_5.png]]
@@ -265,9 +272,9 @@ Donde $R$ corresponde a una matriz [[1- Breve Introducción al Álgebra Lineal#M
 Para fines de mejorar la comprensión de esta estructura de factorización, se introducen los siguientes 2 teoremas:
 - *Para cualquier matriz $A \in \mathbb{C}^{m \times n}$ y matriz $Q \in \mathbb{C}^{m \times m}$ unitaria, tenemos:*
 $$||QA||_2 = ||A||_2,\ ||QA||_F = ||A||_F$$
-  El cual nos indica que el producto por una matriz unitaria no afecta a la [[|norma 2 matricial]] ni la [[|norma de Frobenious]] de la matriz resultante. Es gracias a este teorema que podemos utilizar en esta sección la siguiente implicancia:
+  El cual nos indica que el producto por una matriz unitaria no afecta a la [[1- Breve Introducción al Álgebra Lineal#Norma|norma 2 matricial o norma de Frobenius]] de la matriz resultante. Es gracias a este teorema que podemos utilizar en esta sección la siguiente implicancia:
   $$||Q\bm{\text{x}}||_2 = ||\bm{\text{x}}||_2,$$
-  lo que implica que las matrices unitarias no cambian la [[|norma 2 vectorial]].
+  lo que implica que las matrices unitarias no cambian la [[1- Breve Introducción al Álgebra Lineal#Norma|norma 2 vectorial]].
 
 - *Para cualquier matriz $Q \in \mathbb{C}^{n \times n}$ unitaria se tiene que $|\lambda| = 1$, donde $\lambda$ es un* [[|valor propio]] *de $Q$* 
 
@@ -318,7 +325,7 @@ $$\begin{bmatrix} \bm{\text{a}}_1, & \bm{\text{a}}_2, & \cdots, &\bm{\text{a}}_n
 		0      & \cdots & \cdots & 0      & r_{nn}
 	\end{bmatrix}
 }_{\hat{R}}$$
-Recordando que la matriz $Q$ es [[|ortonormal]], esto implica que sus columnas $\bm{\text{q}}_i$ deben ser ortogonales entre sí y que su [[|norma-2]] de cada una de sus columnas debe ser 1, por lo que podemos expresar las siguientes condiciones para las columnas de $Q$:
+Recordando que la matriz $Q$ es [[|ortonormal]], esto implica que sus columnas $\bm{\text{q}}_i$ deben ser ortogonales entre sí y que su [[1- Breve Introducción al Álgebra Lineal#Norma|norma-2]] de cada una de sus columnas debe ser 1, por lo que podemos expresar las siguientes condiciones para las columnas de $Q$:
 $$\begin{align}
 	\bm{\text{q}}_i^T\bm{\text{q}}_j =&\ 0 &, \text{para}\ i \neq j \tag{6} \\
 	||\bm{\text{q}}_i||_2^2 =&\ 1 \tag{7}
@@ -336,7 +343,7 @@ $$\overbrace{\bmt{a}_1}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{11}
 
 En este caso obtenemos una ecuación para 2 incógnitas, o al menos eso parece a simple vista... ¿Recuerdan que anteriormente mencioné que a un sistema de ecuaciones para estos casos podíamos añadir condiciones para nuestras incógnitas hasta que nuestro sistema tuviera una solución fija? Pues estas condiciones ya las tenemos, y estas equivalen a las [[8- Mínimos Cuadrados#^b40e5e|ecuaciones 6 y 7]]! Sin embargo, ¿Cómo podemos usar estas propiedades de la ortonormalidad para despejar $r_{11}$ y $\bmt{q}_1$? como con las nuevas condiciones podemos formar un sistema de ecuaciones con más ecuaciones que incógnitas, podemos tomarnos la libertad de escoger cualquiera de estas 2 a la hora de obtener estos valores, lo que nos deja con 2 alternativas:
 - Multiplicar por la izquierda por $\bmt{q}_1^*$, es decir, obtener el producto interno con respecto a $\bmt{q}_1$. 
-- Obtener la [[|norma 2]] en ambos lados de la ecuación.
+- Obtener la [[1- Breve Introducción al Álgebra Lineal#Norma|norma 2]] en ambos lados de la ecuación.
 
 Para el caso de la primera alternativa obtenemos:
 $$\begin{align}
@@ -368,7 +375,7 @@ Por lo que debido a que ya tenemos los valores de $\bmt{a}_2$ y $\bmt{q}_1$ pode
 $$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} = \overbrace{r_{12}}^{\text{\textcolor{cyan}{Conocido}}}\ \ \overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} + \underbrace{r_{22}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
 Ahora, fíjense en la estructura de la ecuación cuando mueva todos los valores conocidos hasta ahora hacia la izquierda:
 $$\overbrace{\bmt{a}_2}^{\text{\textcolor{cyan}{Conocido}}} -\overbrace{r_{12}}^{\text{\textcolor{cyan}{Conocido}}}\ \ \overbrace{\bmt{q}_{1}}^{\text{\textcolor{cyan}{Conocido}}} = \underbrace{r_{22}}_{\text{\textcolor{red}{Desconocido}}}\ \ \underbrace{\bmt{q}_{2}}_{\text{\textcolor{red}{Desconocido}}}$$
-Lo que acaba de pasar es que se armó una ecuación con la misma forma que la de la [[8- Mínimos Cuadrados#^93dad4|ecuación 8]], por lo tanto podemos aplicar la misma técnica de la [[|norma-2]] que usamos anteriormente para poder despejar el valor de $r_{22}$:
+Lo que acaba de pasar es que se armó una ecuación con la misma forma que la de la [[8- Mínimos Cuadrados#^93dad4|ecuación 8]], por lo tanto podemos aplicar la misma técnica de la [[1- Breve Introducción al Álgebra Lineal#Norma|norma-2]] que usamos anteriormente para poder despejar el valor de $r_{22}$:
 $$\begin{align}
 	\bmt{a}_2 - r_{12}\bmt{q}_1 =&\ r_{22}\bmt{q}_2 \\
 	 ||\bmt{a}_2 - r_{12}\bmt{q}_1||_2 =&\ ||r_{22}\bmt{q}_2||_2 \\
@@ -395,7 +402,7 @@ $$\begin{align}
 	=&\ r_{13}\underbrace{\bmt{q}_2^T\bmt{q}_1}_0 + r_{23}\underbrace{\bmt{q}_2^T\bmt{q}_2}_1 + r_{33}\underbrace{\bmt{q}_2^T\bmt{q}_3}_0 \\
 	=&\ r_{23}
 \end{align}$$
-Ahora, podemos obtener $r_{33}$ moviendo todas las variables conocidas y aplicando, nuevamente, [[|norma-2]]:
+Ahora, podemos obtener $r_{33}$ moviendo todas las variables conocidas y aplicando, nuevamente, [[1- Breve Introducción al Álgebra Lineal#Norma|norma-2]]:
 $$\begin{align}
 	\bmt{a}_3 - r_{13}\bmt{q}_1 - r_{23}\bmt{q}_2 =&\ r_{33}\bmt{q}_3 \\
 	||\bmt{a}_3 - r_{13}\bmt{q}_1 - r_{23}\bmt{q}_2||_2 =&\ r_{33}\ ||\bmt{q}_3||_2 \\

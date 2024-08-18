@@ -2,7 +2,13 @@
 cssclasses:
   - t-c
 ---
-
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 ## De Decimal a Binario
 
 Los números binarios que poseen valores decimales se representan de la forma:

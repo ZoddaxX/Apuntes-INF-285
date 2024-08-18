@@ -1,3 +1,10 @@
+$$
+\newcommand{\bm}[1]{\boldsymbol{#1}}
+\newcommand{\bmt}[1]{\bm{\text{#1}}}
+\newcommand{\bmf}[1]{\mathbf{#1}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+$$
 En esta sección estudiaremos diversos algoritmos que nos permitirán obtener valores de integrales definidas que uno pudiera no resolver algebraicamente. Es por esto que trabajaremos este tema en base a la siguiente definición de **Integración Numérica o Cuadratura**: *Esta consiste en la obtención de la constante $c \in \mathbb{R}$, o por lo menos una aproximación de ella, de una integral definida $c = \int_a^b f(x) \, dx$ utilizando algún método numérico* (no confundir con la constante de integración $c$, esta vez se usa este carácter para representar la solución de la integral).
 
 Por lo general existen diversos métodos para el cual uno podría llegar a aproximar los resultados, aunque algunos pueden terminar siendo mucho más conveniente que otros dependiendo del contexto. Por ejemplo:

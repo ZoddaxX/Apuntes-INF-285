@@ -39,7 +39,7 @@ def cobweb_plot(f, x0, n):
     plt.show()
 
 # Parámetros iniciales
-x0 = 2.7  # Cambia esto según el valor inicial que desees
+x0 = 2.7  # Initial Guess
 n = 6  # Número de iteraciones
 haw = 0.04 # Ancho de la cabeza de la flecha
 hal = 0.04 # Largo de la cabeza de la flecha
