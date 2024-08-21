@@ -132,7 +132,7 @@ $$\pm0.b_1b_2b_3\cdots b_{52}*2^{-1022}$$ ^512dd2
 - Los bits de la mantisa son los únicos que son modificables.
 
 Lo interesante de esta representación es que nos permite guardar números **más pequeños** de los que permite la forma normalizada. Pero entonces, ¿Cuál es realmente el número más pequeño que se puede obtener con la [[2- Estándar de Punto Flotante y Pérdida de Importancia#^aeafae|precisión doble]]?
-$$\pm 0.000\cdots000*2^{-1022} = 1*2^{-52}*2^{-1022} \approx 4.94 * 10^{-324}$$
+$$\pm 0.000\cdots001*2^{-1022} = 1*2^{-52}*2^{-1022} \approx 4.94 * 10^{-324}$$
 Por supuesto, este número es mucho menor al [[2- Estándar de Punto Flotante y Pérdida de Importancia#^cf9842|machine épsilon]] de la precisión referida, y es importante no llegar a confundirlos en un futuro.
 
 Por último, el número 0 se puede representar de 2 formas en este tipo de normalización:
