@@ -135,7 +135,7 @@ for j in range(n):
 		B[i][j:n+1] = [B[i][k] - mult * B[j][k] for k in range(j, n + 1)]
 ```
 
-Donde la matriz $C$ es donde se almacena la matriz extendida. 
+Donde la variable $B$ es donde se almacena la matriz extendida. 
 
 ### Complejidad Computacional de la Eliminación Gaussiana Simple
 Para saber la complejidad del algoritmo, basta con estudiar el código anterior para ver la velocidad a la que se termina de ejecutar el algoritmo:

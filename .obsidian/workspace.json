@@ -22,7 +22,7 @@
             }
           },
           {
-            "id": "5aaa3bdb4f75248e",
+            "id": "68bc9a0b4e46c0e3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -51,9 +51,11 @@
             "id": "06a9ea9258d0c4bc",
             "type": "leaf",
             "state": {
-              "type": "file-explorer",
+              "type": "markdown",
               "state": {
-                "sortOrder": "alphabetical"
+                "file": "Unidad 1/3- Raíces en 1D (Parte 1).md",
+                "mode": "source",
+                "source": false
               }
             }
           },
@@ -79,8 +81,19 @@
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "67e3ee115a875743",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -175,35 +188,39 @@
       "vscode-editor:Create Code File": false
     }
   },
-  "active": "5aaa3bdb4f75248e",
+  "active": "68bc9a0b4e46c0e3",
   "lastOpenFiles": [
+    "Unidad 1/Ayudantias/Ayudantía_Semana_4_Martes.pdf",
     "Material del Curso/Apuntes_INF-285_2024-v0613.pdf",
-    "Reglas del Juego.md",
-    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
-    "Unidad 1/Ayudantias/Ayudantía_Semana_2.pdf",
-    "Unidad 1/Ayudantias/Semana 2 - Martes (Desarrollo Incompleto).md",
-    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
-    "Unidad 1/Ayudantias",
-    "Código Útil/Diagrama de Cobweb.py",
-    "Unidad 2/5- Sistemas de Ecuaciones Lineales.md",
+    "Unidad 1/Ayudantias/Semana 4 - Martes (Desarrollo Incompleto).md",
     "Unidad 1/4- Raíces en 1D (Parte 2).md",
     "Unidad 1/3- Raíces en 1D (Parte 1).md",
+    "Unidad 1/2- Estándar de Punto Flotante y Pérdida de Importancia.md",
+    "Unidad 1/Ayudantias/Semana 2 - Martes (Desarrollo Incompleto).md",
+    "Unidad 1/Ayudantias/Ayudantía_Semana_2_Martes.pdf",
+    "Unidad 1/Ayudantias/Ayudantía_Semana_1_Martes.pdf",
+    "Unidad 1/Ayudantias/Ayudantía_Semana_1.pdf",
+    "Unidad 3/9- GMRes.md",
+    "Unidad 3/10- Integración Numérica.md",
+    "Unidad 2/5- Sistemas de Ecuaciones Lineales.md",
+    "Untitled Diagram.svg",
+    "Unidad 1/Untitled Diagram.svg",
+    "2024-08-31.md",
+    "Código Útil/Diagrama de Cobweb.py",
+    "Unidad 2/6- Interpolación Polinomial (Parte 1).md",
     "Unidad 2/7- Interpolación Polinomial (Parte 2).md",
     "Unidad 2/8- Mínimos Cuadrados.md",
-    "Unidad 2/6- Interpolación Polinomial (Parte 1).md",
-    "Unidad 3/12- Problemas de Valor de Frontera.md",
-    "Unidad 3/9- GMRes.md",
     "Unidad 3/11- Ecuaciones Diferenciales Ordinarias.md",
-    "Unidad 3/10- Integración Numérica.md",
+    "Unidad 3/12- Problemas de Valor de Frontera.md",
+    "Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
+    "Reglas del Juego.md",
+    "Unidad 1/Ayudantias",
     "Utilidades para Obsidian (lo borraré después xD).md",
     "Material del Curso/s02_estandar.pdf",
     "Material del Curso/s15_ode_1.pdf",
     "Pasted image 20240730230833.png",
     "Material del Curso/s14_integracion.pdf",
-    "Material del Curso/s13_GMRes.pdf",
     "Pasted image 20240729204245.png",
-    "Material del Curso/s10_qr.pdf",
-    "Unidad 3",
     "Pasted image 20240724222757.png",
     "Pasted image 20240724223600.png",
     "Imágenes/Grafico_5.png",
@@ -212,15 +229,11 @@
     "Imágenes/Grafico_4.png",
     "Imágenes/Grafico_2.png",
     "Imágenes/Grafico_1.png",
-    "Imágenes/Grafico_3.png",
-    "Imágenes/Ecuacion_1.png",
     "Diagrama de Cobweb.md",
     "siguientes incisos.md",
     "Apuntes-INF-285/Utilidades para Obsidian (lo borraré después xD).md",
     "Apuntes-INF-285/Reglas del Juego.md",
     "Apuntes-INF-285/Unidad 1/2- Estándar de Punto Flotante y Pérdida de importancia.md",
-    "Apuntes-INF-285/Unidad 1/1- Breve Introducción al Álgebra Lineal.md",
-    "Welcome.md",
-    "create a link.md"
+    "Apuntes-INF-285/Unidad 1/1- Breve Introducción al Álgebra Lineal.md"
   ]
 }

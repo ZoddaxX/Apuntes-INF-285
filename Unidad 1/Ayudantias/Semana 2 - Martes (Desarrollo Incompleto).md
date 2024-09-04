@@ -4,7 +4,7 @@
 ____
 Sé lo que están pensando ahora mismo, ¿Por que te tomarías la molestia de hacer los desarrollos de los problemas de ayudantía si es que ya vienen con la pauta incluida? y la respuesta es bastante simple: me ayuda a estudiar. Intentar explicar este tipo de problemas me ayuda a saber hasta qué punto logro comprender teóricamente la materia que hemos visto, lo cual llega a ser un aspecto que toma mas relevancia de lo normal en este ramo de ~~Análisis Numérico~~ Computación Científica, por lo que trataré de explicar lo mejor posible los desarrollos de este tipo de ejercicios (siempre y cuando tenga tiempo...). También, recordar que es posible que me equivoque más de lo normal a la hora de hacer estos ejercicios, por lo que tómense estos desarrollos con un granito de sal (cualquier corrección a realizar es más que bienvenida). 
 ___
-El ejercicio a resolver corresponde al propuesto en el archivo [[Ayudantía_Semana_2.pdf]], pueden abrirlo en una pestaña aparte para poder leer y entender que es lo que resolveré (por temas de tiempo no puedo tomarme mucho tiempo completando estos apuntes, por lo que me saltaré esos pequeños detalles jaja).
+El ejercicio a resolver corresponde al propuesto en el archivo [[Ayudantía_Semana_2_Martes.pdf]], pueden abrirlo en una pestaña aparte para poder leer y entender que es lo que resolveré (por temas de tiempo no puedo tomarme mucho tiempo completando estos apuntes, por lo que me saltaré esos pequeños detalles jaja).
 
 ## A)
 ### 1)

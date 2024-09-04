@@ -185,3 +185,9 @@ $$\lim\limits_{i\to\infty}\frac{e_{i+1}}{e_i} = \frac{m-1}{m} = S \neq 0$$
 Y por supuesto, gracias a este teorema es que tenemos la oportunidad de además estudiar la multiplicidad de la raíz que nosotros estamos buscando, idea la cual podemos aplicar realizando una pequeña modificación al Método de Newton: *Si $f$ es ($m + 1$) - veces continua y diferenciable en \[a, b], donde hay una raíz $r$ de multiplicidad $m > 1$, entonces el método de Newton modificado:*
 $$x_{i+1} = x_i - m\frac{f(x_i)}{f'(x_i)}$$
 *converge local y cuadráticamente a $r$*.
+
+## Nota(s) al Margen
+
+- Nótese que estos 2 últimos algoritmos que estudiamos no poseen expresiones que nos permitan obtener una cota para el error absoluto de cada iteración que realizamos, mientras que [[3- Raíces en 1D (Parte 1)#^e1f2b1|con bisección si la teníamos]], la cual por completitud adjunto a continuación:
+$$Error\ Absoluto=|x_c^{(n)}-r| \leq \frac{b-a}{2^{n+1}}$$
+	Esto ocurre en parte debido a que en estos 2 últimos métodos es mucho menos predecible el comportamiento de estos métodos en términos de convergencia, además para estos últimos ya vimos de que existe la posibilidad de que nuestras iteraciones diverjan de la raíz buscada, por lo que no es posible obtener una relación similar al caso de bisección. Esto último implica que el único algoritmo que hemos estudiado que nos permite establecer una tolerancia con [[3- Raíces en 1D (Parte 1)#^c6ffe3|p decimales de error]] de la raíz estimada corresponde al método de bisección.
